@@ -843,6 +843,21 @@
     posthtml-render "^3.0.0"
     semver "^5.4.1"
 
+"@parcel/transformer-typescript-tsc@^2.0.0":
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/@parcel/transformer-typescript-tsc/-/transformer-typescript-tsc-2.0.0.tgz#65ac167060ccf3f4f82ce4d6a9f4406b1711bb76"
+  integrity sha512-sOhgf/AmPp15pk2XSBXGuelPh9iFuQ+Y5W1KXAlHlIxqk+K4BJiMb7F/trqySyekIhwIpI2QoS7E921AshSZ3g==
+  dependencies:
+    "@parcel/plugin" "^2.0.0"
+    "@parcel/ts-utils" "^2.0.0"
+
+"@parcel/ts-utils@^2.0.0":
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/@parcel/ts-utils/-/ts-utils-2.0.0.tgz#89954d341a8942cb6ddcda217f5f7b38914bef12"
+  integrity sha512-+jMwsBu5+gyp8iw+h6CN1MR8hYDALdO1ccphHPD2WMzQHpvvp+hhZ/gUfN70ioPz9DOG/d6BMlfm/HVaZLePsA==
+  dependencies:
+    nullthrows "^1.1.1"
+
 "@parcel/types@^2.0.0":
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/@parcel/types/-/types-2.0.0.tgz#31f6eb7c24b2d9ae752ce49adaf01469a9e9067a"
@@ -4277,6 +4292,11 @@ type-fest@^0.21.3:
   version "0.21.3"
   resolved "https://registry.yarnpkg.com/type-fest/-/type-fest-0.21.3.tgz#d260a24b0198436e133fa26a524a6d65fa3b2e37"
   integrity sha512-t0rzBq87m3fVcduHDUFhKmyyX+9eo6WQjZvf51Ea/M0Q7+T374Jp1aUiyUl0GKxp8M/OETVHSDvmkyPgvX+X2w==
+
+typescript@>=3.0.0:
+  version "4.4.4"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-4.4.4.tgz#2cd01a1a1f160704d3101fd5a58ff0f9fcb8030c"
+  integrity sha512-DqGhF5IKoBl8WNf8C1gu8q0xZSInh9j1kJJMqT3a94w1JzVaBU4EXOSMrz9yDqMT0xt3selp83fuFMQ0uzv6qA==
 
 unbox-primitive@^1.0.1:
   version "1.0.1"

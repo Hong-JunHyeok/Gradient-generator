@@ -16,6 +16,9 @@
   },
   "homepage": "https://github.com/Hong-JunHyeok/Gradient-generator#readme",
   "devDependencies": {
-    "parcel": "^2.0.0"
+    "@parcel/config-default": "^2.0.0",
+    "@parcel/transformer-typescript-tsc": "^2.0.0",
+    "parcel": "^2.0.0",
+    "typescript": ">=3.0.0"
   }
 }
