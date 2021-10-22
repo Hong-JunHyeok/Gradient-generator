@@ -9,6 +9,7 @@ const template = /* html */ `
         </div>
         <section id="palette" class="container mx-auto rounded-lg shadow bg-gray-50 flex flex-col md:flex-wrap-reverse p-3">
             <section id="palette-gradient">
+                <div id="gradient-bar"></div>
             </section>
             <section id="palette-color">
                 <div id="color-picker"></div>

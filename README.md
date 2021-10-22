@@ -10,6 +10,7 @@
 
 - 🟡 Only Vanilla JavaScript (Using TypeScript)
 - 🟤 Application Build with Parcel.js
+- 🔵 Apply styling using tailwind css
 
 ### Github Commit message
 

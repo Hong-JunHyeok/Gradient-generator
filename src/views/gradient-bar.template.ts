@@ -1,6 +1,6 @@
 const template = /* html */ `
-    <div id="color-picker">
-        컬러 픽커
+    <div id="gradient-bar">
+        그라디언트 바
     </div>
 `;
 

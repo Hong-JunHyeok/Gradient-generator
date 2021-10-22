@@ -1,6 +1,7 @@
 import template from "./main.template";
 import { title } from "../data/site-meta.json";
 import ColorPicker from "../views/color-picker";
+import GradientBar from "../views/gradient-bar";
 
 export default class MainPage {
   private _template: string;
@@ -15,8 +16,11 @@ export default class MainPage {
   }
 
   private initialize() {
-    const colorPicker = new ColorPicker("#color-picker");
+    const colorPicker = new ColorPicker("#color-picker", {});
+    const gradientBar = new GradientBar("#gradient-bar", {});
+
     this._fields.push(colorPicker);
+    this._fields.push(gradientBar);
   }
 
   render = () => {
