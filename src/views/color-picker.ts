@@ -15,8 +15,6 @@ class ColorPicker extends CoreView {
 
   onChange = (event: any) => {
     this._pickColor = event.target.value;
-
-    console.log(this);
   };
 
   attachEventHandler = () => {

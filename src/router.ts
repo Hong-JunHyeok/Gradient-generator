@@ -1,3 +1,4 @@
+import Store from "./store";
 import MainPage from "./pages/main";
 import NotFoundPage from "./pages/notfound";
 
@@ -10,12 +11,15 @@ const routePaths: RoutePaths = {
   LOGIN_PATH: "/login",
 };
 
+const store = new Store();
+console.log(store);
+
 function router() {
   const path = location.pathname;
 
   switch (path) {
     case routePaths.MAIN_PATH:
-      const mainPage = new MainPage("root");
+      const mainPage = new MainPage("root", store);
       mainPage.render();
       break;
     default:
