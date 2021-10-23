@@ -2,9 +2,6 @@
   "name": "gradient-generator",
   "version": "1.0.0",
   "description": "🎨 손쉽게 그라데이션을 생성해주는 생성기입니다.",
-  "scripts": {
-    "start": "parcel index.html --port 3060"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Hong-JunHyeok/Gradient-generator.git"

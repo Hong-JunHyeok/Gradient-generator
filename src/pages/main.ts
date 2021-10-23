@@ -26,7 +26,6 @@ export default class MainPage {
   render = () => {
     this._container.innerHTML = this._template;
     this._fields.forEach((field) => {
-      // console.log(field);
       field.render(true);
     });
   };

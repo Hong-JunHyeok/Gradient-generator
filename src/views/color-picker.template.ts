@@ -1,7 +1,5 @@
 const template = /* html */ `
-    <div id="color-picker">
-        컬러 픽커
-    </div>
+    <input type="color">
 `;
 
 export default window.Handlebars.compile(template);
