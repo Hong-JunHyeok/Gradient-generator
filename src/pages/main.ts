@@ -4,6 +4,7 @@ import ColorPicker from "../views/color-picker";
 import GradientBar from "../views/gradient-bar";
 import { AnyObject } from "../types/common";
 import PrevGradient from "../views/prev-gradient";
+import ColorList from "../views/color-list";
 
 export default class MainPage {
   private _template: string;
@@ -23,10 +24,12 @@ export default class MainPage {
     const prevGradient = new PrevGradient("#prev-gradient", this._data);
     const colorPicker = new ColorPicker("#color-picker", this._data);
     const gradientBar = new GradientBar("#gradient-bar", this._data);
+    const colorList = new ColorList("#color-list", this._data);
 
     this._fields.push(prevGradient);
     this._fields.push(colorPicker);
     this._fields.push(gradientBar);
+    this._fields.push(colorList);
   }
 
   onChange = (event: Event) => {

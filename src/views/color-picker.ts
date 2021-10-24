@@ -2,6 +2,7 @@ import template from "./color-picker.template";
 import CoreView from "./core-view";
 import { AnyObject } from "../types/common";
 import PrevGradient from "./prev-gradient";
+import { ColorItem } from "../store";
 
 class ColorPicker extends CoreView {
   private _data: AnyObject;
@@ -14,7 +15,19 @@ class ColorPicker extends CoreView {
   }
 
   onChange = (event: any) => {
-    this._data.pickColor = event.target.value;
+    this._data.activeColor = {
+      ...this._data.activeColor,
+      color: event.target.value,
+    };
+
+    this._data.colorList.forEach(
+      (colorItem: ColorItem, _: number, colorList: ColorItem[]) => {
+        if (colorItem.index === this._data.activeColor.index) {
+          colorList[colorItem.index] = this._data.activeColor;
+        }
+      }
+    );
+
     const prevGradient = new PrevGradient("#prev-gradient", this._data);
     prevGradient.render();
   };

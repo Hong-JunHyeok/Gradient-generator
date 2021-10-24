@@ -1,45 +1,40 @@
-interface ColorItem {
+export interface ColorItem {
   stop: number;
   color: string;
+  index: number;
 }
 
 export interface IStore {
-  pickColor: string;
+  colorList: ColorItem[];
 }
 
 class Store implements IStore {
-  private _pickColor: string;
+  private _activeColor: ColorItem;
   public colorList: ColorItem[];
 
   constructor() {
-    this._pickColor = "#000";
     this.colorList = [
       {
         color: "rgba(197, 213, 214, 1)",
         stop: 31,
+        index: 0,
       },
       {
         color: "rgba(232,123,255,1)",
         stop: 78,
+        index: 1,
       },
     ];
+    this._activeColor = this.colorList[0];
   }
 
-  get pickColor() {
-    return this._pickColor;
+  get activeColor() {
+    return this._activeColor;
   }
 
-  set pickColor(colorHexString: string) {
-    this._pickColor = colorHexString;
+  set activeColor(colorItem: ColorItem) {
+    this._activeColor = colorItem;
   }
-
-  // get colorList(): ColorItem[] {
-  //   return this._colorList;
-  // }
-
-  // set colorList(colorItem: ColorItem): void {
-  //   this._colorList.push(colorItem);
-  // }
 }
 
 export default Store;
