@@ -3,7 +3,7 @@ import { AnyObject } from "../types/common";
 const template = /* html */ `
     <ul class="space-y-4">
         {{#each colorList}}
-            <li class="flex shadow rounded {{#ifEquals this.index ../activeColor.index}}ring-4 ring-indigo-300{{/ifEquals}}">
+            <li id="color-item" data-index="{{this.index}}" class="flex shadow rounded {{#ifEquals this.index ../activeColor.index}}ring-4 ring-indigo-300{{/ifEquals}}">
                 <button class="w-12 font-bold">&times;</button>
                 <div style="background: {{this.color}}" class="p-8"></div>
                 <input value="{{this.stop}}" class="w-18 " type="number" min="0" max="100"></input>
