@@ -1,0 +1,10 @@
+{
+  "compilerOptions": {
+    "strict": true,
+    "module": "CommonJS",
+    "target": "ES5",
+    "sourceMap": true,
+    "lib": ["ES6", "DOM"],
+    "resolveJsonModule": true
+  }
+}

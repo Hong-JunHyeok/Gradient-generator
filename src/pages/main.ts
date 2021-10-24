@@ -8,12 +8,12 @@ import PrevGradient from "../views/prev-gradient";
 export default class MainPage {
   private _template: string;
   private _container: HTMLElement;
-  private _fields = [];
+  private _fields: AnyObject[] = [];
   private _data: AnyObject;
 
   constructor(container: string, data: AnyObject) {
     this._template = template({ title });
-    this._container = document.getElementById(container);
+    this._container = document.getElementById(container) as HTMLElement;
     this._data = data;
 
     this.initialize();
@@ -21,18 +21,26 @@ export default class MainPage {
 
   private initialize() {
     const prevGradient = new PrevGradient("#prev-gradient", this._data);
-    const colorPicker = new ColorPicker("#color-picker", {});
-    const gradientBar = new GradientBar("#gradient-bar", {});
+    const colorPicker = new ColorPicker("#color-picker", this._data);
+    const gradientBar = new GradientBar("#gradient-bar", this._data);
 
     this._fields.push(prevGradient);
     this._fields.push(colorPicker);
     this._fields.push(gradientBar);
   }
 
-  render = () => {
+  onChange = (event: Event) => {
+    this._data.pickColor = (event.target as HTMLInputElement).value;
+  };
+
+  public render = () => {
     this._container.innerHTML = this._template;
     this._fields.forEach((field) => {
       field.render();
+
+      if (field.attachEventHandler) {
+        field.attachEventHandler();
+      }
     });
   };
 }

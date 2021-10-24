@@ -1,6 +1,8 @@
 const template = /* html */ `
-    <div id="prev-gradient" style="background: {{pickColor}}" class="h-full">
-        그라디언트 미리보기
+    <div 
+    id="prev-gradient"
+    style="background: linear-gradient(90deg, rgba(238,174,202,1) 0%, {{pickColor}} 100%)"
+    class="h-full">
     </div>
 `;
 

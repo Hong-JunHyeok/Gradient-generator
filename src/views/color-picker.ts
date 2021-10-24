@@ -1,34 +1,33 @@
 import template from "./color-picker.template";
 import CoreView from "./core-view";
-import { nextTick } from "../utils";
-
-interface ColorPickerData {}
+import { AnyObject } from "../types/common";
 
 class ColorPicker extends CoreView {
-  private _pickColor: string;
+  private _data: AnyObject;
 
-  constructor(container: string, data: ColorPickerData) {
+  constructor(container: string, data: AnyObject) {
     super(container, template(data));
+    this._data = data;
 
-    nextTick(this.attachEventHandler);
+    this.attachEventHandler();
   }
 
   onChange = (event: any) => {
-    this._pickColor = event.target.value;
+    this._data.pickColor = event.target.value;
   };
 
   attachEventHandler = () => {
-    document
-      .querySelector(this._container)
-      .addEventListener("change", this.onChange);
+    const colorPickerDom = document.querySelector(`${this._container} > input`);
+
+    colorPickerDom?.addEventListener("input", this.onChange);
   };
 
   get pickColor() {
-    return this._pickColor;
+    return this._data.pickColor;
   }
 
   set pickColor(colorHexCode: string) {
-    this._pickColor = colorHexCode;
+    this._data.pickColor = colorHexCode;
   }
 }
 

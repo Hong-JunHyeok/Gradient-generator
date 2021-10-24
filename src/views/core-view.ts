@@ -11,12 +11,14 @@ class CoreView {
     //* appendChild속성은 container요소의 자식으로써 렌더링 할것인지 덮어쓰기 할 것인지에 대한 옵션
     const container = document.querySelector(this._container);
 
-    if (container && appendChild) {
+    if (appendChild) {
       const divFragment = document.createElement("div");
       divFragment.innerHTML = this._template;
-      container.appendChild(divFragment.children[0]);
+      container?.appendChild(divFragment.children[0]);
     } else {
-      container.innerHTML = this._template;
+      if (container) {
+        container.innerHTML = this._template;
+      }
     }
   };
 }

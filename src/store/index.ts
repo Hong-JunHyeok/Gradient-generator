@@ -3,7 +3,7 @@ export interface IStore {
 }
 
 class Store implements IStore {
-  _pickColor: string;
+  private _pickColor: string;
 
   constructor() {
     this._pickColor = "#000";

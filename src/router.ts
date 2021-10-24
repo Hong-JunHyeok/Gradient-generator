@@ -12,7 +12,6 @@ const routePaths: RoutePaths = {
 };
 
 const store = new Store();
-console.log(store);
 
 function router() {
   const path = location.pathname;
