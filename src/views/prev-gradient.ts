@@ -7,7 +7,7 @@ class PrevGradient extends CoreView {
     super(
       container,
       template({
-        pickColor: data.pickColor,
+        colorList: data.colorList,
       })
     );
   }

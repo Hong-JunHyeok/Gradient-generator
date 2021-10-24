@@ -1,7 +1,7 @@
 const template = /* html */ `
     <div 
     id="prev-gradient"
-    style="background: linear-gradient(90deg, rgba(238,174,202,1) 0%, {{pickColor}} 100%)"
+    style="background: linear-gradient(90deg,{{#each colorList}}{{color}} {{stop}}%{{#if @last}}{{else}},{{/if}}{{/each}})"
     class="h-full">
     </div>
 `;
