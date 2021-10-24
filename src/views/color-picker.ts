@@ -1,6 +1,7 @@
 import template from "./color-picker.template";
 import CoreView from "./core-view";
 import { AnyObject } from "../types/common";
+import PrevGradient from "./prev-gradient";
 
 class ColorPicker extends CoreView {
   private _data: AnyObject;
@@ -14,6 +15,8 @@ class ColorPicker extends CoreView {
 
   onChange = (event: any) => {
     this._data.pickColor = event.target.value;
+    const prevGradient = new PrevGradient("#prev-gradient", this._data);
+    prevGradient.render();
   };
 
   attachEventHandler = () => {
