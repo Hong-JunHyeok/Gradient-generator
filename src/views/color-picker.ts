@@ -1,7 +1,8 @@
 import template from "./color-picker.template";
 import CoreView from "./core-view";
-import { AnyObject } from "../types/common";
 import PrevGradient from "./prev-gradient";
+import ColorList from "./color-list";
+import { AnyObject } from "../types/common";
 import { ColorItem } from "../store";
 
 class ColorPicker extends CoreView {
@@ -29,7 +30,10 @@ class ColorPicker extends CoreView {
     );
 
     const prevGradient = new PrevGradient("#prev-gradient", this._data);
+    const colorList = new ColorList("#color-list", this._data);
+
     prevGradient.render();
+    colorList.render();
   };
 
   attachEventHandler = () => {

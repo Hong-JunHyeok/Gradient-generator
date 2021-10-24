@@ -5,6 +5,7 @@
     "target": "ES5",
     "sourceMap": true,
     "lib": ["ES6", "DOM"],
-    "resolveJsonModule": true
+    "resolveJsonModule": true,
+    "noImplicitThis": false
   }
 }

@@ -9,7 +9,7 @@ export interface IStore {
 }
 
 class Store implements IStore {
-  private _activeColor: ColorItem;
+  public activeColor: ColorItem;
   public colorList: ColorItem[];
 
   constructor() {
@@ -25,15 +25,8 @@ class Store implements IStore {
         index: 1,
       },
     ];
-    this._activeColor = this.colorList[0];
-  }
 
-  get activeColor() {
-    return this._activeColor;
-  }
-
-  set activeColor(colorItem: ColorItem) {
-    this._activeColor = colorItem;
+    this.activeColor = this.colorList[0];
   }
 }
 
