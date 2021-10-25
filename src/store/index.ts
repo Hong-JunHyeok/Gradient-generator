@@ -1,5 +1,3 @@
-import { AnyObject } from "../types/common";
-
 export interface ColorItem {
   stop: number;
   color: string;
@@ -31,7 +29,7 @@ class Store implements IStore {
       {
         color: "rgba(133,173,255,1)",
         stop: 90,
-        index: 1,
+        index: 2,
       },
     ];
 

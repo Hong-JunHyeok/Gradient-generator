@@ -29,6 +29,19 @@ class ColorList extends CoreView {
     }
   };
 
+  onDelete = (event: any) => {
+    const handleTarget = Number((event.target as HTMLElement).dataset.index);
+
+    if (!isNaN(handleTarget)) {
+      this._data.colorList = this._data.colorList.filter(
+        (colorItem: ColorItem) => colorItem.index !== handleTarget
+      );
+
+      this.render();
+      this.attachEventHandler();
+    }
+  };
+
   onChange = (event: any) => {
     const inputElement = event.target as HTMLInputElement;
     const changeInputIndex = Number(inputElement.dataset.index);
@@ -82,6 +95,7 @@ class ColorList extends CoreView {
   attachEventHandler = () => {
     const colorItems = document.querySelectorAll(`#color-item`);
     colorItems.forEach((colorItem) => {
+      colorItem.children[0]?.addEventListener("click", this.onDelete, false);
       colorItem.children[2]?.addEventListener("input", this.onChange, false);
       colorItem.children[3]?.addEventListener("click", this.onClick, false);
     });
