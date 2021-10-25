@@ -24,14 +24,13 @@ class ColorList extends CoreView {
 
     this.render();
     this.attachEventHandler();
-    //! Render시 이벤트 헨들러가 끊기는 현상이 발생
   };
 
   attachEventHandler = () => {
-    const colorItems = document.querySelectorAll(`#color-item`);
+    const colorItems = document.querySelectorAll(`#color-item > #change-color`);
 
     colorItems.forEach((colorItem) => {
-      colorItem?.addEventListener("click", this.onClick);
+      colorItem?.addEventListener("click", this.onClick, true);
     });
   };
 
