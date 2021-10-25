@@ -35,8 +35,8 @@ class ChangeOptions extends CoreView {
   };
 
   attachEventHandler = () => {
-    const lieanrButton = document.querySelector(`${this._container} > #linear`);
-    const radianButton = document.querySelector(`${this._container} > #radial`);
+    const lieanrButton = document.querySelector(`${this._container} #linear`);
+    const radianButton = document.querySelector(`${this._container} #radial`);
 
     lieanrButton?.addEventListener("click", this.onClick);
     radianButton?.addEventListener("click", this.onClick);

@@ -18,7 +18,7 @@ const template = /* html */ `
                 <div id="color-list"></div>
             </section>
             <section id="palette-options">
-                <div id="change-option" class="p-2"></div>
+                <div id="change-option" class="p-2 flex flex-col items-center"></div>
             </section>
         </section>
     </main>

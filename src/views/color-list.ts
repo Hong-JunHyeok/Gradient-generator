@@ -1,3 +1,4 @@
+import PrevGradient from "./prev-gradient";
 import CoreView from "./core-view";
 import template from "./color-list.template";
 import { AnyObject } from "../types/common";
@@ -28,10 +29,30 @@ class ColorList extends CoreView {
     }
   };
 
+  onChange = (event: any) => {
+    const inputElement = event.target as HTMLInputElement;
+    const changeInputIndex = Number(inputElement.dataset.index);
+
+    this._data.colorList.forEach(
+      (colorItem: ColorItem, _: number, colorListData: ColorItem[]) => {
+        if (colorItem.index === changeInputIndex) {
+          colorListData[colorItem.index] = {
+            ...colorListData[colorItem.index],
+            stop: Number(inputElement.value),
+          };
+        }
+      }
+    );
+
+    const prevGradient = new PrevGradient("#prev-gradient", this._data);
+    prevGradient.render(false);
+  };
+
   attachEventHandler = () => {
     const colorItems = document.querySelectorAll(`#color-item`);
     colorItems.forEach((colorItem) => {
-      colorItem?.addEventListener("click", this.onClick, false);
+      colorItem.children[3]?.addEventListener("click", this.onClick, false);
+      colorItem.children[2]?.addEventListener("change", this.onChange, false);
     });
   };
 
