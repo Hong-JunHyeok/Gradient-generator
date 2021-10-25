@@ -6,11 +6,13 @@ export interface ColorItem {
 
 export interface IStore {
   colorList: ColorItem[];
+  isLinear: boolean;
 }
 
 class Store implements IStore {
   public activeColor: ColorItem;
   public colorList: ColorItem[];
+  public isLinear: boolean;
 
   constructor() {
     this.colorList = [
@@ -27,6 +29,7 @@ class Store implements IStore {
     ];
 
     this.activeColor = this.colorList[0];
+    this.isLinear = true;
   }
 }
 

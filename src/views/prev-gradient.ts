@@ -8,6 +8,7 @@ class PrevGradient extends CoreView {
       container,
       template({
         colorList: data.colorList,
+        isLinear: data.isLinear,
       })
     );
   }
