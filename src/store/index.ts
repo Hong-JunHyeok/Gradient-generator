@@ -1,3 +1,5 @@
+import { AnyObject } from "../types/common";
+
 export interface ColorItem {
   stop: number;
   color: string;
@@ -17,13 +19,18 @@ class Store implements IStore {
   constructor() {
     this.colorList = [
       {
-        color: "rgba(197, 213, 214, 1)",
-        stop: 0,
+        color: "rgba(255, 163, 163, 1)",
+        stop: 20,
         index: 0,
       },
       {
         color: "rgba(232,123,255,1)",
-        stop: 100,
+        stop: 50,
+        index: 1,
+      },
+      {
+        color: "rgba(133,173,255,1)",
+        stop: 90,
         index: 1,
       },
     ];

@@ -10,7 +10,21 @@ class GradientBar extends CoreView {
     super(container, template(data));
 
     this._data = data;
+    this.attachEventHandler();
   }
+
+  onDrag = (event: Event, xPosition: number) => {
+    const jsDrag = event.target as HTMLDivElement;
+  };
+
+  attachEventHandler = () => {
+    const jsDrags = document.querySelectorAll(`#js-drag`);
+
+    jsDrags.forEach((jsDrag) => {
+      const xPosition = jsDrag.getBoundingClientRect().x;
+      jsDrag.addEventListener("drag", (event) => this.onDrag(event, xPosition));
+    });
+  };
 
   render = (appendChild: boolean) => {
     //* appendChild속성은 container요소의 자식으로써 렌더링 할것인지 덮어쓰기 할 것인지에 대한 옵션

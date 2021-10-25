@@ -17,5 +17,8 @@
     "@parcel/transformer-typescript-tsc": "^2.0.0",
     "parcel": "^2.0.0",
     "typescript": ">=3.0.0"
+  },
+  "dependencies": {
+    "@handlebars/allow-prototype-access": "^1.0.5"
   }
 }

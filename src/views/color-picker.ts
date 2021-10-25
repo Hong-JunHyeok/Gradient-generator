@@ -32,11 +32,11 @@ class ColorPicker extends CoreView {
 
     const prevGradient = new PrevGradient("#prev-gradient", this._data);
     const colorList = new ColorList("#color-list", this._data);
-    const gradientBar = new GradientBar("#palette-gradient", this._data);
+    // const gradientBar = new GradientBar("#palette-gradient", this._data);
 
     prevGradient.render(false);
+
     colorList.render(false);
-    gradientBar.render(false);
     colorList.attachEventHandler();
   };
 

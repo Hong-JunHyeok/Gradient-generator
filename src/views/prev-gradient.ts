@@ -3,14 +3,11 @@ import template from "./prev-gradient.template";
 import { AnyObject } from "../types/common";
 
 class PrevGradient extends CoreView {
+  private _data: AnyObject;
   constructor(container: string, data: AnyObject) {
-    super(
-      container,
-      template({
-        colorList: data.colorList,
-        isLinear: data.isLinear,
-      })
-    );
+    super(container, template(data));
+
+    this._data = data;
   }
 
   render = (appendChild: boolean) => {
@@ -19,11 +16,11 @@ class PrevGradient extends CoreView {
 
     if (appendChild) {
       const divFragment = document.createElement("div");
-      divFragment.innerHTML = this._template;
+      divFragment.innerHTML = template(this._data);
       container?.appendChild(divFragment.children[0]);
     } else {
       if (container) {
-        container.innerHTML = this._template;
+        container.innerHTML = template(this._data);
       }
     }
   };

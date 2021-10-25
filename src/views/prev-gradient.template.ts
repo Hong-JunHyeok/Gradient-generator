@@ -6,4 +6,9 @@ const template = /* html */ `
     </div>
 `;
 
-export default window.Handlebars.compile(template);
+const {
+  allowInsecurePrototypeAccess,
+} = require("@handlebars/allow-prototype-access");
+const insecureHandlebars = allowInsecurePrototypeAccess(window.Handlebars);
+
+export default insecureHandlebars.compile(template);

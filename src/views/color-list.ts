@@ -3,7 +3,6 @@ import CoreView from "./core-view";
 import template from "./color-list.template";
 import { AnyObject } from "../types/common";
 import { ColorItem } from "../store";
-import GradientBar from "./gradient-bar";
 
 class ColorList extends CoreView {
   private _data: AnyObject;
@@ -46,18 +45,48 @@ class ColorList extends CoreView {
     );
 
     const prevGradient = new PrevGradient("#prev-gradient", this._data);
-    const gradientBar = new GradientBar("#palette-gradient", this._data);
+    // const gradientBar = new GradientBar("#palette-gradient", this._data);
 
     prevGradient.render(false);
-    gradientBar.render(false);
+    // gradientBar.render(false);
+
+    // this.render();
+    // this.attachEventHandler();
+  };
+
+  getRandomColor = () => {
+    const letters = "0123456789ABCDEF";
+    let color = "#";
+    for (let i = 0; i < 6; i++) {
+      color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+  };
+
+  handleCreateNewColor = () => {
+    this._data.colorList.push({
+      color: this._data.activeColor.color,
+      stop: this._data.colorList[this._data.colorList.length - 1].stop + 1,
+      index: this._data.colorList.length,
+    });
+
+    const prevGradient = new PrevGradient("#prev-gradient", this._data);
+    const colorList = new ColorList("#color-list", this._data);
+
+    prevGradient.render(false);
+
+    colorList.render();
+    this.attachEventHandler();
   };
 
   attachEventHandler = () => {
     const colorItems = document.querySelectorAll(`#color-item`);
     colorItems.forEach((colorItem) => {
+      colorItem.children[2]?.addEventListener("input", this.onChange, false);
       colorItem.children[3]?.addEventListener("click", this.onClick, false);
-      colorItem.children[2]?.addEventListener("change", this.onChange, false);
     });
+    const newColor = document.querySelector("#new-color");
+    newColor?.addEventListener("click", this.handleCreateNewColor);
   };
 
   render = (appendChild: boolean = false) => {

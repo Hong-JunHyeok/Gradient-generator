@@ -24,13 +24,13 @@ export default class MainPage {
   private initialize() {
     const prevGradient = new PrevGradient("#prev-gradient", this._data);
     const colorPicker = new ColorPicker("#color-picker", this._data);
-    const gradientBar = new GradientBar("#palette-gradient", this._data);
+    // const gradientBar = new GradientBar("#palette-gradient", this._data);
     const colorList = new ColorList("#color-list", this._data);
     const changeOptions = new ChangeOptions("#change-option", this._data);
 
     this._fields.push(prevGradient);
     this._fields.push(colorPicker);
-    this._fields.push(gradientBar);
+    // this._fields.push(gradientBar);
     this._fields.push(colorList);
     this._fields.push(changeOptions);
   }
