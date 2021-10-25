@@ -9,6 +9,7 @@ declare global {
     Handlebars: {
       compile: (template: string) => (data: AnyObject) => string;
       registerHelper: any;
+      Pickr: any;
     };
   }
 }

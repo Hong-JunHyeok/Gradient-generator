@@ -1,7 +1,7 @@
 const template = /* html */ `
-    <header class="flex">
-        <h1 class="text-2xl font-black">그라데이션 타입 설정</h1>
-        <p class="leading-8 px-1">밑의 옵션을 클릭해서 그라데이션의 타입을 설정해보세요.</p>
+    <header>
+        <h1 class="text-2xl font-black">Gradient type setting</h1>
+        <p>Click the option below to set the type of gradation.</p>
     </header>
     <div class="flex items-center">
         <button id="linear" class="mx-1 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Linear</button>
