@@ -18,12 +18,12 @@ class Store implements IStore {
     this.colorList = [
       {
         color: "rgba(197, 213, 214, 1)",
-        stop: 31,
+        stop: 0,
         index: 0,
       },
       {
         color: "rgba(232,123,255,1)",
-        stop: 78,
+        stop: 100,
         index: 1,
       },
     ];

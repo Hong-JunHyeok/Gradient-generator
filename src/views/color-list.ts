@@ -3,6 +3,7 @@ import CoreView from "./core-view";
 import template from "./color-list.template";
 import { AnyObject } from "../types/common";
 import { ColorItem } from "../store";
+import GradientBar from "./gradient-bar";
 
 class ColorList extends CoreView {
   private _data: AnyObject;
@@ -45,7 +46,10 @@ class ColorList extends CoreView {
     );
 
     const prevGradient = new PrevGradient("#prev-gradient", this._data);
+    const gradientBar = new GradientBar("#palette-gradient", this._data);
+
     prevGradient.render(false);
+    gradientBar.render(false);
   };
 
   attachEventHandler = () => {
