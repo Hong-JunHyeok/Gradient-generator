@@ -4,6 +4,7 @@ import PrevGradient from "./prev-gradient";
 import ColorList from "./color-list";
 import { AnyObject } from "../types/common";
 import { ColorItem } from "../store";
+import GradientBar from "./gradient-bar";
 
 class ColorPicker extends CoreView {
   private _data: AnyObject;
@@ -31,9 +32,11 @@ class ColorPicker extends CoreView {
 
     const prevGradient = new PrevGradient("#prev-gradient", this._data);
     const colorList = new ColorList("#color-list", this._data);
+    const gradientBar = new GradientBar("#palette-gradient", this._data);
 
     prevGradient.render(false);
     colorList.render(false);
+    gradientBar.render(false);
     colorList.attachEventHandler();
   };
 
