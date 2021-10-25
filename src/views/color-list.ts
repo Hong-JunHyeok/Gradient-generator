@@ -27,10 +27,9 @@ class ColorList extends CoreView {
   };
 
   attachEventHandler = () => {
-    const colorItems = document.querySelectorAll(`#color-item > #change-color`);
-
+    const colorItems = document.querySelectorAll(`#color-item`);
     colorItems.forEach((colorItem) => {
-      colorItem?.addEventListener("click", this.onClick, true);
+      colorItem?.addEventListener("click", this.onClick, false);
     });
   };
 

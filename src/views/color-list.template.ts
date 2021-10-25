@@ -1,17 +1,36 @@
 import { AnyObject } from "../types/common";
 
 const template = /* html */ `
-    <ul class="space-y-4">
+      <table class="table-auto space-y-4">
+        <thead>
+          <tr>
+            <th>삭제</th>
+            <th>색</th>
+            <th>Stop</th>
+            <th>색 변경</th>
+          </tr>
+        </thead>
+        <tbody>
         {{#each colorList}}
-            <li id="color-item" class="flex items-center shadow rounded {{#ifEquals this.index ../activeColor.index}}ring-4 ring-indigo-300{{/ifEquals}}">
-                <button class="w-12 font-bold">&times;</button>
-                <div style="background: {{this.color}}" class="p-8"></div>
-                <input value="{{this.stop}}" class="w-18 " type="number" min="0" max="100"></input>
-                <button id="change-color" data-index="{{this.index}}" class="bg-purple-600 w-20 bg-opacity-75 rounded h-12 text-gray-100">색 설정</button>
-            </li>
-        {{/each}}
-    </ul>
+          <tr id="color-item" class="{{#ifEquals this.index ../activeColor.index}}ring-4 ring-indigo-300{{/ifEquals}}">
+              <td><button class="w-12 font-bold">&times;</button></td>
+              <td><div style="background: {{this.color}}" class="p-8"></div></td>
+              <td><input value="{{this.stop}}" class="w-18 " type="number" min="0" max="100"></input></td>
+              <td><button id="change-color" data-index="{{this.index}}" class="bg-purple-600 w-20 bg-opacity-75 rounded h-12 text-gray-100">색 설정</button></td>
+          </tr>
+            {{/each}}
+        </tbody>
+      </table>
 `;
+
+// {{#each colorList}}
+//             <tr id="color-item" class="flex items-center shadow rounded {{#ifEquals this.index ../activeColor.index}}ring-4 ring-indigo-300{{/ifEquals}}">
+//                 <td><button class="w-12 font-bold">&times;</button></td>
+//                 <td><div style="background: {{this.color}}" class="p-8"></div></td>
+//                 <td><input value="{{this.stop}}" class="w-18 " type="number" min="0" max="100"></input></td>
+//                 <td><button id="change-color" data-index="{{this.index}}" class="bg-purple-600 w-20 bg-opacity-75 rounded h-12 text-gray-100">색 설정</button></td>
+//             </tr>
+//         {{/each}}
 
 window.Handlebars.registerHelper(
   "ifEquals",
