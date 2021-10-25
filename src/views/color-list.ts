@@ -18,12 +18,14 @@ class ColorList extends CoreView {
       (event.target as HTMLLIElement).dataset.index
     );
 
-    this._data.activeColor = this._data.colorList.find(
-      (colorItem: ColorItem) => colorItem.index === colorItemIndex
-    );
+    if (!isNaN(colorItemIndex)) {
+      this._data.activeColor = this._data.colorList.find(
+        (colorItem: ColorItem) => colorItem.index === colorItemIndex
+      );
 
-    this.render();
-    this.attachEventHandler();
+      this.render();
+      this.attachEventHandler();
+    }
   };
 
   attachEventHandler = () => {
