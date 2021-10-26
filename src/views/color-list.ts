@@ -16,10 +16,12 @@ class ColorList extends CoreView {
 
   onChangeActive = (event: Event) => {
     const colorItemIndex = Number(
-      (event.target as HTMLLIElement).dataset.index
+      (event.target as HTMLElement).parentElement?.dataset.index
     );
 
-    if (!isNaN(colorItemIndex)) {
+    console.log(colorItemIndex);
+
+    if (colorItemIndex !== undefined) {
       const findActiceColor = this._data.colorList.find(
         (colorItem: ColorItem) => colorItem.index === colorItemIndex
       );
@@ -34,6 +36,7 @@ class ColorList extends CoreView {
   };
 
   onDelete = (event: Event) => {
+    event.preventDefault();
     const handleTarget = Number((event.target as HTMLElement).dataset.index);
 
     if (this._data.colorList.length === 2) {
@@ -110,20 +113,18 @@ class ColorList extends CoreView {
     colorItems.forEach((colorItem) => {
       colorItem.children[0]?.addEventListener("click", this.onDelete, false);
       colorItem.children[2]?.addEventListener("input", this.onChange, false);
-      colorItem.children[3]?.addEventListener(
-        "click",
-        this.onChangeActive,
-        false
-      );
+      colorItem.addEventListener("click", this.onChangeActive, false);
+      // colorItem.children[3]?.addEventListener(
+      //   "click",
+      //   this.onChangeActive,
+      //   false
+      // );
     });
     const newColor = document.querySelector("#new-color");
     newColor?.addEventListener("click", this.handleCreateNewColor);
   };
 
   render = (appendChild: boolean = false) => {
-    console.log("=========================");
-    this._data.colorList.forEach((colorItem) => console.log(colorItem.index));
-    console.log("=========================");
     console.log(this._data.activeColor);
     //* appendChild속성은 container요소의 자식으로써 렌더링 할것인지 덮어쓰기 할 것인지에 대한 옵션
     const container = document.querySelector("#color-list");
