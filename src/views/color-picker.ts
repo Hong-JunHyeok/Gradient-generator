@@ -4,7 +4,7 @@ import PrevGradient from "./prev-gradient";
 import ColorList from "./color-list";
 import { AnyObject } from "../types/common";
 import { ColorItem } from "../store";
-import GradientBar from "./gradient-bar";
+import CodeViewer from "./code-viewer";
 
 class ColorPicker extends CoreView {
   private _data: AnyObject;
@@ -16,10 +16,16 @@ class ColorPicker extends CoreView {
     this.attachEventHandler();
   }
 
+  convertHexToRgb = (hexCode: string) => {
+    const value = hexCode.match(/[A-Za-z0-9]{2}/g);
+
+    return "rgb(" + value?.map((hex) => parseInt(hex, 16)).join(",") + ")";
+  };
+
   onChange = (event: any) => {
     this._data.activeColor = {
       ...this._data.activeColor,
-      color: event.target.value,
+      color: this.convertHexToRgb(event.target.value),
     };
 
     this._data.colorList.forEach(
@@ -32,10 +38,10 @@ class ColorPicker extends CoreView {
 
     const prevGradient = new PrevGradient("#prev-gradient", this._data);
     const colorList = new ColorList("#color-list", this._data);
-    // const gradientBar = new GradientBar("#palette-gradient", this._data);
+    const codeViewer = new CodeViewer("#code-viewer", this._data);
 
+    codeViewer.render();
     prevGradient.render(false);
-
     colorList.render(false);
     colorList.attachEventHandler();
   };

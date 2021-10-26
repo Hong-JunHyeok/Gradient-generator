@@ -3,6 +3,7 @@ import CoreView from "./core-view";
 import template from "./color-list.template";
 import { AnyObject } from "../types/common";
 import { ColorItem } from "../store";
+import CodeViewer from "./code-viewer";
 
 class ColorList extends CoreView {
   private _data: AnyObject;
@@ -58,8 +59,9 @@ class ColorList extends CoreView {
     );
 
     const prevGradient = new PrevGradient("#prev-gradient", this._data);
-    // const gradientBar = new GradientBar("#palette-gradient", this._data);
+    const codeViewer = new CodeViewer("#code-viewer", this._data);
 
+    codeViewer.render();
     prevGradient.render(false);
     // gradientBar.render(false);
 
@@ -85,7 +87,9 @@ class ColorList extends CoreView {
 
     const prevGradient = new PrevGradient("#prev-gradient", this._data);
     const colorList = new ColorList("#color-list", this._data);
+    const codeViewer = new CodeViewer("#code-viewer", this._data);
 
+    codeViewer.render();
     prevGradient.render(false);
 
     colorList.render();
