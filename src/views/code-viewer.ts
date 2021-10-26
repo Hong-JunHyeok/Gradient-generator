@@ -19,6 +19,23 @@ class CodeViewer extends CoreView {
     document.querySelectorAll("pre  code").forEach((el: Element, _: number) => {
       hljs.highlightElement(el as HTMLElement);
     });
+
+    document
+      .getElementById("copy-text")
+      ?.addEventListener("click", this.onCopy);
+  };
+
+  onCopy = (event: Event) => {
+    const clipCode = document.querySelector("pre code")?.textContent;
+    const tempTextArea = document.createElement("textarea");
+    document.body.appendChild(tempTextArea);
+
+    if (clipCode) {
+      tempTextArea.value = clipCode.trim();
+      tempTextArea.select();
+      document.execCommand("copy");
+      document.body.removeChild(tempTextArea);
+    }
   };
 
   render = (appendChild: boolean = false) => {
