@@ -4,17 +4,19 @@ export interface ColorItem {
   index: number;
 }
 
-export interface CodeItem {
-  code: string;
-  type: "android" | "css";
-}
+export type Type = "css" | "xml";
+export type CodeType<T = Type> = {
+  type: T;
+  specialColor: string;
+};
 
 export interface IStore {
   activeColor: ColorItem;
   colorList: ColorItem[];
   isLinear: boolean;
   colorItemIndex: number;
-  codeData: CodeItem[];
+  codeData: Type;
+  codeTypes: CodeType[];
 }
 
 class Store implements IStore {
@@ -22,7 +24,8 @@ class Store implements IStore {
   public colorList: ColorItem[];
   public isLinear: boolean;
   public colorItemIndex: number;
-  public codeData: CodeItem[];
+  public codeData: Type;
+  public codeTypes: CodeType<Type>[];
 
   constructor() {
     this.colorList = [
@@ -46,7 +49,8 @@ class Store implements IStore {
     this.activeColor = this.colorList[0];
     this.isLinear = true;
     this.colorItemIndex = this.colorList.length;
-    this.codeData = [{ code: "INSERT CODE HERE", type: "css" }];
+    this.codeData = "css";
+    this.codeTypes = [{ type: "css", specialColor: "#2965f1" }];
   }
 }
 

@@ -73,6 +73,9 @@ class ColorList extends CoreView {
       stop: Number(inputElement.value),
     };
 
+    this._data.colorList.sort((a, b) => a.stop - b.stop);
+    console.log(this._data.colorList);
+
     codeViewer.render();
     prevGradient.render(false);
   };
