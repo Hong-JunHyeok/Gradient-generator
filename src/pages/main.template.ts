@@ -11,9 +11,6 @@ const template = /* html */ `
             <section id="palette-gradient">
                 <div id="gradient-bar"></div>
             </section>
-            <section id="palette-color">
-                <div id="color-picker"></div>
-            </section>
             <section>
                 <div id="color-list"></div>
             </section>
@@ -25,6 +22,10 @@ const template = /* html */ `
 
     </main>
 `;
+
+// <section id="palette-color">
+//                 <div id="color-picker"></div>
+//             </section>
 
 const {
   allowInsecurePrototypeAccess,

@@ -74,10 +74,37 @@ class ColorList extends CoreView {
     };
 
     this._data.colorList.sort((a, b) => a.stop - b.stop);
-    console.log(this._data.colorList);
 
     codeViewer.render();
     prevGradient.render(false);
+  };
+
+  static convertHexToRgb = (hexCode: string) => {
+    const value = hexCode.match(/[A-Za-z0-9]{2}/g);
+
+    return "rgb(" + value?.map((hex) => parseInt(hex, 16)).join(",") + ")";
+  };
+
+  onChangeColor = (event: Event) => {
+    const inputTarget = event.target as HTMLInputElement;
+    const inputTargetIndex = Number(inputTarget.dataset.index);
+
+    this._data.colorList.forEach((colorItem, _, colorListObj) => {
+      if (colorItem.index === inputTargetIndex) {
+        colorListObj[inputTargetIndex] = {
+          ...colorListObj[inputTargetIndex],
+          color: ColorList.convertHexToRgb(inputTarget.value),
+        };
+      }
+    });
+
+    const prevGradient = new PrevGradient("#prev-gradient", this._data);
+    const codeViewer = new CodeViewer("#code-viewer", this._data);
+
+    codeViewer.render();
+    prevGradient.render(false);
+
+    this.attachEventHandler();
   };
 
   getRandomColor = () => {
@@ -89,7 +116,7 @@ class ColorList extends CoreView {
     return color;
   };
 
-  handleCreateNewColor = () => {
+  onCreateNewColor = () => {
     const newColorItem = {
       color: this._data.activeColor.color,
       stop: this._data.colorList[this._data.colorList.length - 1].stop + 1,
@@ -117,7 +144,16 @@ class ColorList extends CoreView {
       colorItem.addEventListener("click", this.onChangeActive, false);
     });
     const newColor = document.querySelector("#new-color");
-    newColor?.addEventListener("click", this.handleCreateNewColor);
+    newColor?.addEventListener("click", this.onCreateNewColor);
+
+    const colorInputs = document.querySelectorAll("#color-picker");
+    colorInputs.forEach((colorItem) => {
+      colorItem.addEventListener("input", this.onChangeColor);
+      colorItem.addEventListener("blur", () => {
+        this.render();
+        this.attachEventHandler();
+      });
+    });
   };
 
   render = (appendChild: boolean = false) => {
