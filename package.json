@@ -19,6 +19,7 @@
     "typescript": ">=3.0.0"
   },
   "dependencies": {
-    "@handlebars/allow-prototype-access": "^1.0.5"
+    "@handlebars/allow-prototype-access": "^1.0.5",
+    "highlight.js": "^11.3.1"
   }
 }

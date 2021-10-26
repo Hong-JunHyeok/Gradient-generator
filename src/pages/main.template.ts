@@ -21,6 +21,8 @@ const template = /* html */ `
                 <div id="change-option" class="p-2 flex flex-col"></div>
             </section>
         </section>
+
+        <div id="code-viewer">Hello</div>
     </main>
 `;
 
