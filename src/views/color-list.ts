@@ -45,6 +45,12 @@ class ColorList extends CoreView {
         (colorItem: ColorItem) => colorItem.index !== handleTarget
       );
 
+      const prevGradient = new PrevGradient("#prev-gradient", this._data);
+      const codeViewer = new CodeViewer("#code-viewer", this._data);
+
+      codeViewer.render();
+      prevGradient.render(false);
+
       this.render();
       this.attachEventHandler();
     }
