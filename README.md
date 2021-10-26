@@ -13,6 +13,21 @@
 - 🔵 Apply styling using tailwind css
 - 💚 Rendering templates using Handlebars
 
+## Dependencies
+
+```json
+"dependencies": {
+    "@handlebars/allow-prototype-access": "^1.0.5",
+    "highlight.js": "^11.3.1"
+  },
+  "devDependencies": {
+    "@parcel/config-default": "^2.0.0",
+    "@parcel/transformer-typescript-tsc": "^2.0.0",
+    "parcel": "^2.0.0",
+    "typescript": ">=3.0.0"
+  }
+```
+
 ### Github Commit message
 
 > - DOCS: documentation 변경

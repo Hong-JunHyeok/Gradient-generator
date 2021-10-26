@@ -3,6 +3,7 @@ import CoreView from "./core-view";
 import template from "./color-list.template";
 import { ColorItem, IStore } from "../store";
 import CodeViewer from "./code-viewer";
+import ColorPicker from "./color-picker";
 
 class ColorList extends CoreView {
   private _data: IStore;
@@ -18,8 +19,6 @@ class ColorList extends CoreView {
     const colorItemIndex = Number(
       (event.target as HTMLElement).parentElement?.dataset.index
     );
-
-    console.log(colorItemIndex);
 
     if (colorItemIndex !== undefined) {
       const findActiceColor = this._data.colorList.find(
@@ -110,22 +109,17 @@ class ColorList extends CoreView {
 
   attachEventHandler = () => {
     const colorItems = document.querySelectorAll(`#color-item`);
+
     colorItems.forEach((colorItem) => {
       colorItem.children[0]?.addEventListener("click", this.onDelete, false);
       colorItem.children[2]?.addEventListener("input", this.onChange, false);
       colorItem.addEventListener("click", this.onChangeActive, false);
-      // colorItem.children[3]?.addEventListener(
-      //   "click",
-      //   this.onChangeActive,
-      //   false
-      // );
     });
     const newColor = document.querySelector("#new-color");
     newColor?.addEventListener("click", this.handleCreateNewColor);
   };
 
   render = (appendChild: boolean = false) => {
-    console.log(this._data.activeColor);
     //* appendChild속성은 container요소의 자식으로써 렌더링 할것인지 덮어쓰기 할 것인지에 대한 옵션
     const container = document.querySelector("#color-list");
 

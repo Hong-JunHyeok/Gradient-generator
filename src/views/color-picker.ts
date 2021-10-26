@@ -2,7 +2,7 @@ import template from "./color-picker.template";
 import CoreView from "./core-view";
 import PrevGradient from "./prev-gradient";
 import ColorList from "./color-list";
-import { ColorItem, IStore } from "../store";
+import { IStore } from "../store";
 import CodeViewer from "./code-viewer";
 
 class ColorPicker extends CoreView {
