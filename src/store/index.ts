@@ -5,14 +5,17 @@ export interface ColorItem {
 }
 
 export interface IStore {
+  activeColor: ColorItem;
   colorList: ColorItem[];
   isLinear: boolean;
+  colorItemIndex: number;
 }
 
 class Store implements IStore {
   public activeColor: ColorItem;
   public colorList: ColorItem[];
   public isLinear: boolean;
+  public colorItemIndex: number;
 
   constructor() {
     this.colorList = [
@@ -35,6 +38,7 @@ class Store implements IStore {
 
     this.activeColor = this.colorList[0];
     this.isLinear = true;
+    this.colorItemIndex = this.colorList.length;
   }
 }
 

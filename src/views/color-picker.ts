@@ -2,14 +2,13 @@ import template from "./color-picker.template";
 import CoreView from "./core-view";
 import PrevGradient from "./prev-gradient";
 import ColorList from "./color-list";
-import { AnyObject } from "../types/common";
-import { ColorItem } from "../store";
+import { ColorItem, IStore } from "../store";
 import CodeViewer from "./code-viewer";
 
 class ColorPicker extends CoreView {
-  private _data: AnyObject;
+  private _data: IStore;
 
-  constructor(container: string, data: AnyObject) {
+  constructor(container: string, data: IStore) {
     super(container, template(data));
     this._data = data;
 
@@ -23,18 +22,17 @@ class ColorPicker extends CoreView {
   };
 
   onChange = (event: any) => {
-    this._data.activeColor = {
+    const newActiveColor = {
       ...this._data.activeColor,
       color: this.convertHexToRgb(event.target.value),
     };
 
-    this._data.colorList.forEach(
-      (colorItem: ColorItem, _: number, colorList: ColorItem[]) => {
-        if (colorItem.index === this._data.activeColor.index) {
-          colorList[colorItem.index] = this._data.activeColor;
-        }
-      }
+    this._data.activeColor = newActiveColor;
+
+    const colorListIndex = this._data.colorList.findIndex(
+      (colorItem) => colorItem.index === newActiveColor.index
     );
+    this._data.colorList[colorListIndex] = newActiveColor;
 
     const prevGradient = new PrevGradient("#prev-gradient", this._data);
     const colorList = new ColorList("#color-list", this._data);
@@ -42,7 +40,7 @@ class ColorPicker extends CoreView {
 
     codeViewer.render();
     prevGradient.render(false);
-    colorList.render(false);
+    colorList.render();
     colorList.attachEventHandler();
   };
 
@@ -52,25 +50,17 @@ class ColorPicker extends CoreView {
     colorPickerDom?.addEventListener("input", this.onChange);
   };
 
-  get pickColor() {
-    return this._data.pickColor;
-  }
-
-  set pickColor(colorHexCode: string) {
-    this._data.pickColor = colorHexCode;
-  }
-
   render = (appendChild: boolean) => {
     //* appendChild속성은 container요소의 자식으로써 렌더링 할것인지 덮어쓰기 할 것인지에 대한 옵션
     const container = document.querySelector(this._container);
 
     if (appendChild) {
       const divFragment = document.createElement("div");
-      divFragment.innerHTML = this._template;
+      divFragment.innerHTML = template(this._data);
       container?.appendChild(divFragment.children[0]);
     } else {
       if (container) {
-        container.innerHTML = this._template;
+        container.innerHTML = template(this._data);
       }
     }
   };
