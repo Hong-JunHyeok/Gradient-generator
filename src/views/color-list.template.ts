@@ -21,9 +21,9 @@ const template = /* html */ `
           <tr id="color-item" data-index="{{this.index}}" class="{{#ifEquals this.index ../activeColor.index}}rounded ring-4 ring-indigo-300{{/ifEquals}} cursor-pointer">
               <td class="px-6 py-4 whitespace-nowrap"><button class="w-12 font-bold" data-index="{{this.index}}">&times;</button></td>
               <td class="px-6 py-5">
+                <input id="color-picker" name="color-picker" type="color" class="hidden">
                 <label style="background: {{this.color}};" class="p-5 rounded-full" for="color-picker">
                 </label>
-                <input id="color-picker" name="color-picker" type="color" class="hidden">
               </td>
               <td class="px-6 py-4 whitespace-nowrap">
                 <input id="change-stop" value="{{this.stop}}" class="input-{{this.index}} rounded-lg overflow-hidden appearance-none bg-gray-400 h-3 w-128" type="range" min="0" max="100" data-index="{{this.index}}"></input>

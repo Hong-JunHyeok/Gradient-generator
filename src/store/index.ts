@@ -4,11 +4,17 @@ export interface ColorItem {
   index: number;
 }
 
+export interface CodeItem {
+  code: string;
+  type: "android" | "css";
+}
+
 export interface IStore {
   activeColor: ColorItem;
   colorList: ColorItem[];
   isLinear: boolean;
   colorItemIndex: number;
+  codeData: CodeItem[];
 }
 
 class Store implements IStore {
@@ -16,6 +22,7 @@ class Store implements IStore {
   public colorList: ColorItem[];
   public isLinear: boolean;
   public colorItemIndex: number;
+  public codeData: CodeItem[];
 
   constructor() {
     this.colorList = [
@@ -39,6 +46,7 @@ class Store implements IStore {
     this.activeColor = this.colorList[0];
     this.isLinear = true;
     this.colorItemIndex = this.colorList.length;
+    this.codeData = [{ code: "INSERT CODE HERE", type: "css" }];
   }
 }
 
