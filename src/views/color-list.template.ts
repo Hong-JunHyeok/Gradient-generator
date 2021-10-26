@@ -5,7 +5,7 @@ const template = /* html */ `
       <table class="table-auto space-y-4 min-w-full divide-y divide-gray-200">
         <thead class="bg-gray-50">
           <tr>
-            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"></th>
+            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Delete</th>
             <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Color</th>
             <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Stop</th>
           </tr>
@@ -20,10 +20,10 @@ const template = /* html */ `
           </style>
           <tr id="color-item" data-index="{{this.index}}" class="{{#ifEquals this.index ../activeColor.index}}rounded ring-4 ring-indigo-300{{/ifEquals}} cursor-pointer">
               <td class="px-6 py-4 whitespace-nowrap"><button class="w-12 font-bold" data-index="{{this.index}}">&times;</button></td>
-              <td class="px-6 py-4 whitespace-nowrap">
-                <label style="background: {{this.color}}; cursor: copy;" class="p-3 rounded-full" for="color-picker">
-                <input id="color-picker" type="color" class="hidden">
-                </input>
+              <td class="px-6 py-5">
+                <label style="background: {{this.color}};" class="p-5 rounded-full" for="color-picker">
+                </label>
+                <input id="color-picker" name="color-picker" type="color" class="hidden">
               </td>
               <td class="px-6 py-4 whitespace-nowrap">
                 <input id="change-stop" value="{{this.stop}}" class="input-{{this.index}} rounded-lg overflow-hidden appearance-none bg-gray-400 h-3 w-128" type="range" min="0" max="100" data-index="{{this.index}}"></input>
@@ -32,7 +32,7 @@ const template = /* html */ `
         {{/each}}
         </tbody>
       </table>
-      <div id="new-color" class="mt-2 text-green-500 px-6 py-4 whitespace-nowrap text-center bg-gray-200 rounded-lg cursor-pointer">+ New Color Set</div>
+      <div id="new-color" class="mt-2 text-green-500 px-6 py-4 whitespace-nowrap text-center bg-gray-200 rounded-lg" style="cursor: copy;" >+ New Color Set</div>
       <hr />
 `;
 

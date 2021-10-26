@@ -4,10 +4,11 @@ import { AnyObject } from "../types/common";
 import PrevGradient from "./prev-gradient";
 import ColorList from "./color-list";
 import CodeViewer from "./code-viewer";
+import { IStore } from "../store";
 
 class ChangeOptions extends CoreView {
-  private _data;
-  constructor(container: string, data: AnyObject) {
+  private _data: IStore;
+  constructor(container: string, data: IStore) {
     super(container, template(data));
 
     this._data = data;

@@ -3,7 +3,6 @@ import CoreView from "./core-view";
 import template from "./color-list.template";
 import { ColorItem, IStore } from "../store";
 import CodeViewer from "./code-viewer";
-import ColorPicker from "./color-picker";
 
 class ColorList extends CoreView {
   private _data: IStore;
@@ -27,10 +26,9 @@ class ColorList extends CoreView {
 
       if (findActiceColor) {
         this._data.activeColor = findActiceColor;
+        this.render();
+        this.attachEventHandler();
       }
-
-      this.render();
-      this.attachEventHandler();
     }
   };
 
