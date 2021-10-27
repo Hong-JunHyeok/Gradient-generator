@@ -18,6 +18,7 @@
   "homepage": "https://Hong-JunHyeok.github.io/Gradient-generator",
   "dependencies": {
     "@handlebars/allow-prototype-access": "^1.0.5",
+    "angle-input": "^0.0.1",
     "gh-pages": "^3.2.3",
     "highlight.js": "^11.3.1"
   },

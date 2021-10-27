@@ -4,7 +4,7 @@ const template = /* html */ `
     <style>
       #copy-text {
         transition: ease-in .2s;
-        background: {{#if isLinear}}linear{{else}}radial{{/if}}-gradient({{#if isLinear}}90deg{{else}}circle{{/if}},{{#each colorList}}{{color}} {{stop}}%{{#if @last}}{{else}},{{/if}}{{/each}})
+        background: {{#if isLinear}}linear{{else}}radial{{/if}}-gradient({{#if isLinear}}{{angle}}deg{{else}}circle{{/if}},{{#each colorList}}{{color}} {{stop}}%{{#if @last}}{{else}},{{/if}}{{/each}})
       }
       #copy-text:hover {
         color :white
@@ -21,7 +21,7 @@ const template = /* html */ `
         <code class="{{codeData}}">
           {{#ifEquals codeData "css"}}
             <!--CSS Case-->
-background: {{#if isLinear}}linear{{else}}radial{{/if}}-gradient({{#if isLinear}}90deg{{else}}circle{{/if}},{{#each colorList}}{{color}} {{stop}}%{{#if @last}}{{else}},{{/if}}{{/each}})
+background: {{#if isLinear}}linear{{else}}radial{{/if}}-gradient({{#if isLinear}}{{angle}}deg{{else}}circle{{/if}},{{#each colorList}}{{color}} {{stop}}%{{#if @last}}{{else}},{{/if}}{{/each}})
           {{/ifEquals}}
           {{#ifEquals codeData "xml"}}
             <!--XML Case-->

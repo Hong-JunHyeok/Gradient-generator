@@ -17,6 +17,7 @@ export interface IStore {
   colorItemIndex: number;
   codeData: Type;
   codeTypes: CodeType[];
+  angle: number;
 }
 
 class Store implements IStore {
@@ -26,6 +27,7 @@ class Store implements IStore {
   public colorItemIndex: number;
   public codeData: Type;
   public codeTypes: CodeType<Type>[];
+  public angle: number;
 
   constructor() {
     this.colorList = [
@@ -51,6 +53,7 @@ class Store implements IStore {
     this.colorItemIndex = this.colorList.length;
     this.codeData = "css";
     this.codeTypes = [{ type: "css", specialColor: "#2965f1" }];
+    this.angle = 90;
   }
 }
 

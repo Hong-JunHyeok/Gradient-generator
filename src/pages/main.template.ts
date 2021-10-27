@@ -7,7 +7,7 @@ const template = /* html */ `
             <div id="prev-gradient" class="w-full h-80 bg-gray-100">
             </div>
         </header>
-        <section id="palette" class="relative container mx-auto rounded-lg shadow bg-gray-50 flex flex-col md:flex-wrap-reverse p-3 mt-72">
+        <section id="palette" class="relative container mx-auto rounded-lg shadow bg-gray-50 flex flex-col md:flex-wrap-reverse p-3" style="margin-top: 22rem;">
             <section id="palette-gradient">
                 <div id="gradient-bar"></div>
             </section>

@@ -13,6 +13,18 @@ class ChangeOptions extends CoreView {
     this._data = data;
   }
 
+  private onChangeAangle = (event: Event) => {
+    let changeValue = Number((event.target as HTMLInputElement).value);
+
+    this._data.angle = changeValue;
+
+    const prevGradient = new PrevGradient("#prev-gradient", this._data);
+    const codeViewer = new CodeViewer("#code-viewer", this._data);
+
+    codeViewer.render();
+    prevGradient.render(false);
+  };
+
   onClick = (event: any) => {
     const { id } = event.target as HTMLButtonElement;
 
@@ -31,6 +43,9 @@ class ChangeOptions extends CoreView {
     const colorList = new ColorList("#color-list", this._data);
     const codeViewer = new CodeViewer("#code-viewer", this._data);
 
+    this.render(false);
+    this.attachEventHandler();
+
     codeViewer.render();
     prevGradient.render(false);
     colorList.render(false);
@@ -40,9 +55,11 @@ class ChangeOptions extends CoreView {
   attachEventHandler = () => {
     const lieanrButton = document.querySelector(`${this._container} #linear`);
     const radianButton = document.querySelector(`${this._container} #radial`);
+    const changeAngle = document.getElementById("change-angle");
 
     lieanrButton?.addEventListener("click", this.onClick);
     radianButton?.addEventListener("click", this.onClick);
+    changeAngle?.addEventListener("input", this.onChangeAangle);
   };
 
   render = (appendChild: boolean) => {

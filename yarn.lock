@@ -993,6 +993,11 @@ alphanum-sort@^1.0.2:
   resolved "https://registry.yarnpkg.com/alphanum-sort/-/alphanum-sort-1.0.2.tgz#97a1119649b211ad33691d9f9f486a8ec9fbe0a3"
   integrity sha1-l6ERlkmyEa0zaR2fn0hqjsn74KM=
 
+angle-input@^0.0.1:
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/angle-input/-/angle-input-0.0.1.tgz#0abba7b96b2e61fe3805b00522e794d9a85bcabe"
+  integrity sha1-CrunuWsuYf44BbAFIueU2ahbyr4=
+
 ansi-escapes@^4.2.1:
   version "4.3.2"
   resolved "https://registry.yarnpkg.com/ansi-escapes/-/ansi-escapes-4.3.2.tgz#6b2291d1db7d98b6521d5f1efa42d0f3a9feb65e"
