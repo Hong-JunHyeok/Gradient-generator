@@ -30,7 +30,7 @@ const template = /* html */ `
                 <input id="color-picker" data-index="{{this.index}}" name="color-picker" type="color" class="w-0 p-5 rounded" style="background: {{this.color}};">
               </td>
               <td class="px-6 py-4 whitespace-nowrap" data-index="{{this.index}}">
-                <input id="change-stop" value="{{this.stop}}" class="input-{{this.index}} rounded-lg overflow-hidden appearance-none bg-gray-400 h-3 w-128" type="range" min="0" max="100"></input>
+                <input id="change-stop" data-index="{{this.index}}" value="{{this.stop}}" class="input-{{this.index}} rounded-lg overflow-hidden appearance-none bg-gray-400 h-3 w-128" type="range" min="0" max="100"></input>
               </td>
           </tr>
         {{/each}}

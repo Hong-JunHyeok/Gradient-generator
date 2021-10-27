@@ -21,8 +21,29 @@ class ChangeOptions extends CoreView {
     const prevGradient = new PrevGradient("#prev-gradient", this._data);
     const codeViewer = new CodeViewer("#code-viewer", this._data);
 
+    const allElementsExceptAngle = document.body.querySelectorAll<HTMLElement>(
+      "*:not(#angle-container,#prev-gradient)"
+    );
+
+    allElementsExceptAngle.forEach((element) => {
+      element.classList.add("translucent");
+    });
+
     codeViewer.render();
     prevGradient.render(false);
+  };
+
+  private onBlurAngle = (event: Event) => {
+    console.log("BLUR");
+    const allElementsExceptAngle = document.querySelectorAll<HTMLElement>(
+      "*:not(#angle-container,#prev-gradient)"
+    );
+
+    allElementsExceptAngle.forEach((element) => {
+      setTimeout(() => {
+        element.classList.replace("translucent", "non-translucent");
+      }, 200);
+    });
   };
 
   onClick = (event: any) => {
@@ -60,6 +81,7 @@ class ChangeOptions extends CoreView {
     lieanrButton?.addEventListener("click", this.onClick);
     radianButton?.addEventListener("click", this.onClick);
     changeAngle?.addEventListener("input", this.onChangeAangle);
+    changeAngle?.addEventListener("mouseup", this.onBlurAngle);
   };
 
   render = (appendChild: boolean) => {
