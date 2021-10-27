@@ -1,6 +1,5 @@
 import CoreView from "./core-view";
 import template from "./change-options.template";
-import { AnyObject } from "../types/common";
 import PrevGradient from "./prev-gradient";
 import ColorList from "./color-list";
 import CodeViewer from "./code-viewer";

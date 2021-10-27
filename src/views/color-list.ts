@@ -20,12 +20,12 @@ class ColorList extends CoreView {
     );
 
     if (colorItemIndex !== undefined) {
-      const findActiceColor = this._data.colorList.find(
+      const findActiveColor = this._data.colorList.find(
         (colorItem: ColorItem) => colorItem.index === colorItemIndex
       );
 
-      if (findActiceColor) {
-        this._data.activeColor = findActiceColor;
+      if (findActiveColor) {
+        this._data.activeColor = findActiveColor;
         this.render();
         this.attachEventHandler();
       }
@@ -68,13 +68,20 @@ class ColorList extends CoreView {
     );
     const changeElementIndex = this._data.colorList.indexOf(changeElement!);
 
-    this._data.colorList[changeElementIndex] = {
-      ...this._data.colorList[changeElementIndex],
-      stop: Number(inputElement.value),
-    };
+    if (changeElement) {
+      this._data.colorList[changeElementIndex] = {
+        ...changeElement,
+        stop: Number(inputElement.value),
+      };
 
-    this._data.colorList.sort((a, b) => a.stop - b.stop);
+      this._data.activeColor = changeElement;
+      this._data.colorList.sort((a, b) => a.stop - b.stop);
+    }
 
+    inputElement.addEventListener("blur", () => {
+      this.render();
+      this.attachEventHandler();
+    });
     codeViewer.render();
     prevGradient.render(false);
   };
@@ -89,12 +96,15 @@ class ColorList extends CoreView {
     const inputTarget = event.target as HTMLInputElement;
     const inputTargetIndex = Number(inputTarget.dataset.index);
 
-    this._data.colorList.forEach((colorItem, _, colorListObj) => {
+    this._data.colorList.forEach((colorItem, index, colorListObj) => {
       if (colorItem.index === inputTargetIndex) {
-        colorListObj[inputTargetIndex] = {
-          ...colorListObj[inputTargetIndex],
+        this._data.activeColor = {
+          ...this._data.activeColor,
+          index: inputTargetIndex,
           color: ColorList.convertHexToRgb(inputTarget.value),
         };
+
+        colorListObj[index] = this._data.activeColor;
       }
     });
 
@@ -104,6 +114,7 @@ class ColorList extends CoreView {
     codeViewer.render();
     prevGradient.render(false);
 
+    this.onChangeActive(event);
     this.attachEventHandler();
   };
 
@@ -143,6 +154,7 @@ class ColorList extends CoreView {
       colorItem.children[2]?.addEventListener("input", this.onChange, false);
       colorItem.addEventListener("click", this.onChangeActive, false);
     });
+
     const newColor = document.querySelector("#new-color");
     newColor?.addEventListener("click", this.onCreateNewColor);
 
@@ -157,6 +169,7 @@ class ColorList extends CoreView {
   };
 
   render = (appendChild: boolean = false) => {
+    console.log(this._data.activeColor);
     //* appendChild속성은 container요소의 자식으로써 렌더링 할것인지 덮어쓰기 할 것인지에 대한 옵션
     const container = document.querySelector("#color-list");
 

@@ -12,3 +12,15 @@ export const updateArray = (
     array[index] = newValue;
   }
 };
+
+export const pageOutPrevent = (event: Event) => {
+  event.preventDefault();
+
+  function saveContent() {
+    if (confirm("내용을 저장하시겠습니까?")) {
+      //TODO: SAVE
+    }
+  }
+
+  setTimeout(saveContent, 0);
+};
