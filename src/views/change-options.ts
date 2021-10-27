@@ -34,15 +34,12 @@ class ChangeOptions extends CoreView {
   };
 
   private onBlurAngle = (event: Event) => {
-    console.log("BLUR");
     const allElementsExceptAngle = document.querySelectorAll<HTMLElement>(
       "*:not(#angle-container,#prev-gradient)"
     );
 
     allElementsExceptAngle.forEach((element) => {
-      setTimeout(() => {
-        element.classList.replace("translucent", "non-translucent");
-      }, 200);
+      element.classList.remove("translucent");
     });
   };
 
@@ -85,7 +82,6 @@ class ChangeOptions extends CoreView {
   };
 
   render = (appendChild: boolean) => {
-    //* appendChild속성은 container요소의 자식으로써 렌더링 할것인지 덮어쓰기 할 것인지에 대한 옵션
     const container = document.querySelector(this._container);
 
     if (appendChild) {
