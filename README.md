@@ -1,10 +1,10 @@
 ![image](https://user-images.githubusercontent.com/48292190/138295872-3aac4f1d-9cd4-499e-a143-20e02b4dcb3c.png)
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/b34388a8-c6b3-4467-8952-177c58045ecd/deploy-status)](https://app.netlify.com/sites/gradient-css/deploys)
+
 # Gradient Generator
 
 🎨 손쉽게 그라데이션을 생성해주는 생성기입니다.
-
-<div style="width:100%;background-image: linear-gradient(279deg, rgb(131, 58, 180) 0%, rgb(253, 29, 29) 50%, rgb(252, 176, 69) 100%); font-size:32px; text-align:center; padding:0 1rem; color: white;">Gradient Generator</div>
 
 ## Stack
 

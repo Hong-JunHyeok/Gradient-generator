@@ -38,7 +38,7 @@ android:shape="rectangle"
 &lt;/shape &gt;
           {{/ifEquals}}
         </code>
-        <button id="copy-text" class="w-full	rounded py-1" style="">Copy {{codeData}}</button>
+        <button id="copy-text" class="w-full py-1" style="">Copy {{codeData}}</button>
     </pre>
     `;
 

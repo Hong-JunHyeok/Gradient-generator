@@ -2,9 +2,9 @@ import CoreView from "./core-view";
 import template from "./code-viewer.template";
 import { IStore, Type } from "../store";
 
-import "highlight.js/styles/base16/dracula";
+import "highlight.js/styles/base16/dracula.css";
 import hljs from "highlight.js/lib/core";
-import css from "highlight.js/lib/languages/css";
+import css from "highlight.js/lib/languages/css.js";
 hljs.registerLanguage("css", css);
 
 class CodeViewer extends CoreView {
