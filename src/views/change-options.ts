@@ -4,6 +4,7 @@ import PrevGradient from "./prev-gradient";
 import ColorList from "./color-list";
 import CodeViewer from "./code-viewer";
 import { IStore } from "../store";
+import changeOptionsTemplate from "./change-options.template";
 
 class ChangeOptions extends CoreView {
   private _data: IStore;
@@ -28,6 +29,12 @@ class ChangeOptions extends CoreView {
     allElementsExceptAngle.forEach((element) => {
       element.classList.add("translucent");
     });
+
+    const angleInner = document.getElementById("angle");
+
+    if (angleInner) {
+      angleInner.innerHTML = `Angle : ${this._data.angle}`;
+    }
 
     codeViewer.render();
     prevGradient.render(false);
@@ -70,15 +77,40 @@ class ChangeOptions extends CoreView {
     colorList.attachEventHandler();
   };
 
+  private onChangeAngleByButton = (event: Event) => {
+    const buttonTarget = event.target as HTMLButtonElement;
+    const targetValue = Number(buttonTarget.dataset.value);
+
+    if (targetValue === -1 && this._data.angle - 1 >= 0) {
+      this._data.angle -= 1;
+    }
+
+    if (targetValue === 1 && this._data.angle + 1 <= 360) {
+      this._data.angle += 1;
+    }
+
+    const prevGradient = new PrevGradient("#prev-gradient", this._data);
+    const codeViewer = new CodeViewer("#code-viewer", this._data);
+
+    prevGradient.render(false);
+    codeViewer.render();
+    this.render(false);
+    this.attachEventHandler();
+  };
+
   attachEventHandler = () => {
     const lieanrButton = document.querySelector(`${this._container} #linear`);
     const radianButton = document.querySelector(`${this._container} #radial`);
     const changeAngle = document.getElementById("change-angle");
+    const increase = document.getElementById("increase");
+    const decrease = document.getElementById("decrease");
 
     lieanrButton?.addEventListener("click", this.onClick);
     radianButton?.addEventListener("click", this.onClick);
     changeAngle?.addEventListener("input", this.onChangeAangle);
     changeAngle?.addEventListener("mouseup", this.onBlurAngle);
+    increase?.addEventListener("click", this.onChangeAngleByButton);
+    decrease?.addEventListener("click", this.onChangeAngleByButton);
   };
 
   render = (appendChild: boolean) => {
