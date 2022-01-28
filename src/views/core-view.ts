@@ -7,7 +7,7 @@ abstract class CoreView {
     this._template = template;
   }
 
-  abstract render = (appendChild: boolean) => {};
+  abstract render: (appendChild: boolean) => void;
 }
 
 export default CoreView;
