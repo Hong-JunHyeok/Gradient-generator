@@ -94,6 +94,7 @@ class ChangeOptions extends CoreView {
 
     prevGradient.render(false);
     codeViewer.render();
+
     this.render(false);
     this.attachEventHandler();
   };
