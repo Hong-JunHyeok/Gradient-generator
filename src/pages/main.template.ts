@@ -17,15 +17,13 @@ const template = /* html */ `
             <section id="palette-options">
                 <div id="change-option" class="p-2 flex flex-col"></div>
             </section>
-            <div id="code-viewer">Hello</div>
+            <div id="code-viewer"></div>
+            <div id="md-viewer">
+                New Feature
+            </div>
         </section>
-
     </main>
 `;
-
-// <section id="palette-color">
-//                 <div id="color-picker"></div>
-//             </section>
 
 const {
   allowInsecurePrototypeAccess,

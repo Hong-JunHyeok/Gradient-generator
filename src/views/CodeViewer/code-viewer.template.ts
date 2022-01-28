@@ -1,4 +1,4 @@
-import { AnyObject } from "../types/common";
+import { AnyObject } from "../../types/common";
 
 const template = /* html */ `
     <style>
@@ -42,9 +42,6 @@ android:shape="rectangle"
     </pre>
     `;
 
-// <code class="{{codeData}}">
-//   background: {{#if isLinear}}linear{{else}}radial{{/if}}-gradient({{#if isLinear}}90deg{{else}}circle{{/if}},{{#each colorList}}{{color}} {{stop}}%{{#if @last}}{{else}},{{/if}}{{/each}})
-// </code>
 const {
   allowInsecurePrototypeAccess,
 } = require("@handlebars/allow-prototype-access");
@@ -58,19 +55,3 @@ insecureHandlebars.registerHelper(
 );
 
 export default insecureHandlebars.compile(template);
-
-//CSS
-//background: {{#if isLinear}}linear{{else}}radial{{/if}}-gradient({{#if isLinear}}90deg{{else}}circle{{/if}},{{#each colorList}}{{color}} {{stop}}%{{#if @last}}{{else}},{{/if}}{{/each}})
-
-//XML
-// <shape
-//         xmlns:android="http://schemas.android.com/apk/res/android"
-//         android:shape="rectangle"
-//         >
-//           <gradient
-//           android:angle="90"
-//           android:centerColor="#b4b4b4"
-//           android:endColor="#FFFFFF"
-//           android:startColor="#000000"
-//           android:type="linear" />
-//         </shape>

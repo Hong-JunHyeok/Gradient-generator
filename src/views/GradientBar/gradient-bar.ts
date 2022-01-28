@@ -1,5 +1,5 @@
-import { AnyObject } from "../types/common";
-import CoreView from "./core-view";
+import { AnyObject } from "../../types/common";
+import CoreView from "../core-view";
 import template from "./gradient-bar.template";
 
 interface GradientBarData {}

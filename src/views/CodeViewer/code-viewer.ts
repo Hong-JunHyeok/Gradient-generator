@@ -1,6 +1,6 @@
-import CoreView from "./core-view";
+import CoreView from "../core-view";
 import template from "./code-viewer.template";
-import { IStore, Type } from "../store";
+import { IStore, Type } from "../../store";
 
 import "highlight.js/styles/base16/dracula.css";
 import hljs from "highlight.js/lib/core";
