@@ -2,10 +2,11 @@
   "compilerOptions": {
     "strict": true,
     "module": "CommonJS",
-    "target": "ES5",
+    "target": "es5",
     "sourceMap": true,
-    "lib": ["ES6", "DOM"],
+    "lib": ["es5", "dom"],
     "resolveJsonModule": true,
-    "noImplicitThis": false
+    "noImplicitThis": false,
+    "esModuleInterop": true
   }
 }

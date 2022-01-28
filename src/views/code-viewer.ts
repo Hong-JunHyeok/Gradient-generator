@@ -4,7 +4,8 @@ import { IStore, Type } from "../store";
 
 import "highlight.js/styles/base16/dracula.css";
 import hljs from "highlight.js/lib/core";
-import css from "highlight.js/lib/languages/css.js";
+import css from 'highlight.js/lib/languages/css';
+
 hljs.registerLanguage("css", css);
 
 class CodeViewer extends CoreView {
