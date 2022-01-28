@@ -18,9 +18,8 @@ const template = /* html */ `
                 <div id="change-option" class="p-2 flex flex-col"></div>
             </section>
             <div id="code-viewer"></div>
-            <div id="md-viewer">
-                New Feature
-            </div>
+            <div id="text-input"></div>
+            <div id="md-viewer"></div>
         </section>
     </main>
 `;

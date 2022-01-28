@@ -1,9 +1,9 @@
 import template from "./color-picker.template";
-import CoreView from "./core-view";
-import PrevGradient from "./prev-gradient";
-import ColorList from "./color-list";
-import { IStore } from "../store";
-import CodeViewer from "./code-viewer";
+import CoreView from "../core-view";
+import PrevGradient from "../PrevGradient";
+import ColorList from "../ColorList";
+import { IStore } from "../../store";
+import CodeViewer from "../CodeViewer";
 
 class ColorPicker extends CoreView {
   private _data: IStore;
@@ -62,7 +62,7 @@ class ColorPicker extends CoreView {
         container.innerHTML = template(this._data);
       }
     }
-  };
+  }
 }
 
 export default ColorPicker;
