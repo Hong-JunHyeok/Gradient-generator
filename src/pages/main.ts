@@ -44,7 +44,6 @@ export default class MainPage {
 
       if (field.attachEventHandler) {
         field.attachEventHandler();
-        console.log(field)
       }
     });
   };

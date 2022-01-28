@@ -1,16 +1,17 @@
 import CoreView from "../core-view";
 import template from "./prev-gradient.template";
-import { AnyObject } from "../../types/common";
+import { IStore } from "../../store";
 
 class PrevGradient extends CoreView {
-  private _data: AnyObject;
-  constructor(container: string, data: AnyObject) {
+  private _data: IStore;
+  constructor(container: string, data: IStore) {
     super(container, template(data));
 
     this._data = data;
   }
 
-  render = (appendChild: boolean) => {
+  render = (appendChild?: boolean) => {
+    console.log(this._data.textData)
     const container = document.querySelector(this._container);
 
     if (appendChild) {

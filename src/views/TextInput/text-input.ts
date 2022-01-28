@@ -1,22 +1,26 @@
 import CoreView from "../core-view";
 import template from "./text-input.template";
-import { AnyObject } from "../../types/common";
+import PrevGradient from "../PrevGradient";
+import { IStore } from "../../store";
 
 class TextInput extends CoreView {
-  private _data: AnyObject;
-  constructor(container: string, data: AnyObject) {
+  private _data: IStore;
+  constructor(container: string, data: IStore) {
     super(container, template(data));
 
     this._data = data;
   }
   
   private onChangeText = (event: Event) => {
+    const prevGradient = new PrevGradient("#prev-gradient", this._data);
     const textValue = (event.target as HTMLInputElement).value;
+
+    this._data.textData = textValue;
+    prevGradient.render();
   }
 
   public attachEventHandler = () => {
     const textInputEl = document.querySelector<HTMLInputElement>('#text-input');
-    console.log(textInputEl)
 
     textInputEl?.addEventListener('input', this.onChangeText)
   }

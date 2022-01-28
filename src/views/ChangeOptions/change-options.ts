@@ -4,7 +4,6 @@ import PrevGradient from "../PrevGradient";
 import ColorList from "../ColorList";
 import CodeViewer from "../CodeViewer";
 import { IStore } from "../../store";
-import changeOptionsTemplate from "./change-options.template";
 
 class ChangeOptions extends CoreView {
   private _data: IStore;
