@@ -4,14 +4,34 @@ import { IStore } from "../../store";
 
 class PrevGradient extends CoreView {
   private _data: IStore;
+
   constructor(container: string, data: IStore) {
     super(container, template(data));
 
     this._data = data;
   }
 
+  private fontResizer(): void {
+    const prevGradient = document.querySelector<HTMLDivElement>('#prev-gradient');
+    const textContainer = document.querySelector<HTMLParagraphElement>('#text-container');
+
+    const prevOffset = prevGradient && prevGradient.offsetWidth;
+    const textOffset = textContainer && textContainer.offsetWidth;
+
+    let rest = 10;
+    if(prevOffset && textOffset) {
+      rest = prevOffset / textOffset;
+      console.log(`Rest : ${rest}`);
+    }
+
+
+    if(rest < 1.2 && textContainer) {
+      // When text overflow
+      textContainer.style.fontSize = '80%';
+    }
+  }
+
   render = (appendChild?: boolean) => {
-    console.log(this._data.textData)
     const container = document.querySelector(this._container);
 
     if (appendChild) {
@@ -23,6 +43,8 @@ class PrevGradient extends CoreView {
         container.innerHTML = template(this._data);
       }
     }
+
+    this.fontResizer()
   };
 }
 
