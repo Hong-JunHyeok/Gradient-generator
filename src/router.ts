@@ -3,12 +3,11 @@ import MainPage from "./pages/main";
 import NotFoundPage from "./pages/notfound";
 
 interface RoutePaths {
-  [key: string]: "/" | "/login" | "/static";
+  [key: string]: "/" | "/static";
 }
 
 const routePaths: RoutePaths = {
   MAIN_PATH: "/",
-  LOGIN_PATH: "/login",
   STATIC_PATH: "/static"
 };
 

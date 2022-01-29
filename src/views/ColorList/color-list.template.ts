@@ -1,4 +1,4 @@
-import { AnyObject } from "../types/common";
+import { AnyObject } from "../../types/common";
 
 const template = /* html */ `
     <header id="color-info-container">

@@ -1,10 +1,9 @@
-import CoreView from "./core-view";
+import CoreView from "../core-view";
 import template from "./change-options.template";
-import PrevGradient from "./prev-gradient";
-import ColorList from "./color-list";
-import CodeViewer from "./code-viewer";
-import { IStore } from "../store";
-import changeOptionsTemplate from "./change-options.template";
+import PrevGradient from "../PrevGradient";
+import ColorList from "../ColorList";
+import CodeViewer from "../CodeViewer";
+import { IStore } from "../../store";
 
 class ChangeOptions extends CoreView {
   private _data: IStore;

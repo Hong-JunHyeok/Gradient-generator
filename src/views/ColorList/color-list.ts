@@ -1,8 +1,8 @@
-import PrevGradient from "./prev-gradient";
-import CoreView from "./core-view";
+import PrevGradient from "../PrevGradient";
+import CoreView from "../core-view";
 import template from "./color-list.template";
-import { ColorItem, IStore } from "../store";
-import CodeViewer from "./code-viewer";
+import { ColorItem, IStore } from "../../store";
+import CodeViewer from "../CodeViewer";
 
 class ColorList extends CoreView {
   private _data: IStore;

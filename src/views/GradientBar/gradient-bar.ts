@@ -1,12 +1,12 @@
-import { AnyObject } from "../types/common";
-import CoreView from "./core-view";
+import { IStore } from "../../store";
+import CoreView from "../core-view";
 import template from "./gradient-bar.template";
 
 interface GradientBarData {}
 
 class GradientBar extends CoreView {
-  private _data: AnyObject;
-  constructor(container: string, data: GradientBarData) {
+  private _data: IStore;
+  constructor(container: string, data: IStore) {
     super(container, template(data));
 
     this._data = data;
