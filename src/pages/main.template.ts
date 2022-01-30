@@ -8,6 +8,7 @@ const template = /* html */ `
             </div>
         </header>
         <section id="palette" class="relative container mx-auto rounded-lg shadow bg-gray-50 flex flex-col md:flex-wrap-reverse p-3" style="margin-top: 22rem;">
+            <div id="text-input"></div>
             <section id="palette-gradient">
                 <div id="gradient-bar"></div>
             </section>
@@ -17,7 +18,6 @@ const template = /* html */ `
             <section id="palette-options">
                 <div id="change-option" class="p-2 flex flex-col"></div>
             </section>
-            <div id="text-input"></div>
             <div id="code-viewer"></div>
             <div id="md-viewer"></div>
         </section>

@@ -1,7 +1,7 @@
 import CoreView from "../core-view";
 import template from "./prev-gradient.template";
 import { IStore } from "../../store";
-import { MAX_FONT_SIZE, MIN_FONT_SIZE } from '../../constants';
+import { fontResizer } from '../../utils';
 
 class PrevGradient extends CoreView {
   private _data: IStore;
@@ -10,25 +10,6 @@ class PrevGradient extends CoreView {
     super(container, template(data));
 
     this._data = data;
-  }
-
-  public fontResizer(): void {
-    const prevGradient = document.querySelector<HTMLDivElement>('#prev-gradient');
-    const textContainer = document.querySelector<HTMLParagraphElement>('#text-container');
-
-    let prevOffset = prevGradient && prevGradient.offsetWidth;
-    let textOffset = textContainer && textContainer.offsetWidth;
-  
-    while(textOffset! > prevOffset! && textContainer) {
-      const currentFontSize = parseInt(textContainer.style.fontSize, 10);
-      let resizedFontSize = currentFontSize - 16;
-
-      if(resizedFontSize <= MIN_FONT_SIZE) break;
-      textContainer.style.fontSize = `${resizedFontSize}px`
-
-      prevOffset = prevGradient && prevGradient.offsetWidth;
-      textOffset = textContainer && textContainer.offsetWidth;
-    }
   }
 
   render = (appendChild?: boolean) => {
@@ -44,9 +25,11 @@ class PrevGradient extends CoreView {
       }
     }
 
-    this.fontResizer()
+    fontResizer({
+      parentElement: document.querySelector<HTMLDivElement>('#prev-gradient')!,
+      textElement: document.querySelector<HTMLParagraphElement>('#text-container')!
+    })
   };
-
 }
 
 export default PrevGradient;
