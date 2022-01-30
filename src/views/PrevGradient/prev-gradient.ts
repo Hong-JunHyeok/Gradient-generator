@@ -1,6 +1,7 @@
 import CoreView from "../core-view";
 import template from "./prev-gradient.template";
 import { IStore } from "../../store";
+import { MAX_FONT_SIZE, MIN_FONT_SIZE } from '../../constants';
 
 class PrevGradient extends CoreView {
   private _data: IStore;
@@ -11,23 +12,22 @@ class PrevGradient extends CoreView {
     this._data = data;
   }
 
-  private fontResizer(): void {
+  public fontResizer(): void {
     const prevGradient = document.querySelector<HTMLDivElement>('#prev-gradient');
     const textContainer = document.querySelector<HTMLParagraphElement>('#text-container');
 
-    const prevOffset = prevGradient && prevGradient.offsetWidth;
-    const textOffset = textContainer && textContainer.offsetWidth;
+    let prevOffset = prevGradient && prevGradient.offsetWidth;
+    let textOffset = textContainer && textContainer.offsetWidth;
+  
+    while(textOffset! > prevOffset! && textContainer) {
+      const currentFontSize = parseInt(textContainer.style.fontSize, 10);
+      let resizedFontSize = currentFontSize - 16;
 
-    let rest = 10;
-    if(prevOffset && textOffset) {
-      rest = prevOffset / textOffset;
-      console.log(`Rest : ${rest}`);
-    }
+      if(resizedFontSize <= MIN_FONT_SIZE) break;
+      textContainer.style.fontSize = `${resizedFontSize}px`
 
-
-    if(rest < 1.2 && textContainer) {
-      // When text overflow
-      textContainer.style.fontSize = '80%';
+      prevOffset = prevGradient && prevGradient.offsetWidth;
+      textOffset = textContainer && textContainer.offsetWidth;
     }
   }
 
@@ -46,6 +46,7 @@ class PrevGradient extends CoreView {
 
     this.fontResizer()
   };
+
 }
 
 export default PrevGradient;
