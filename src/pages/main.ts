@@ -20,27 +20,63 @@ export default class MainPage {
     this._container = document.getElementById(container) as HTMLElement;
     this._data = data;
 
-    this.initialize();
+    window.addEventListener('hashchange', () => {
+      this.initialize()
+      this.render()
+    });
+
+    this.initialize()
+    this.render()
   }
 
   private initialize() {
     const prevGradient = new PrevGradient("#prev-gradient", this._data);
-    const colorList = new ColorList("#color-list", this._data);
-    const changeOptions = new ChangeOptions("#change-option", this._data);
-    const codeViewer = new CodeViewer("#code-viewer", this._data);
-    const textInput = new TextInput("#text-input", this._data);
+    this._fields = [];
 
     this._fields.push(prevGradient);
-    this._fields.push(colorList);
-    this._fields.push(changeOptions);
-    this._fields.push(codeViewer);
-    this._fields.push(textInput);
+
+    if(window.location.hash) {
+      // Fragment exists
+      const fragment = window.location.hash as "#pallete" | "#text" | "#code";
+      console.log(this._fields)
+
+      switch(fragment) {
+        case "#pallete":{
+          const colorList = new ColorList("#color-list", this._data);
+          const changeOptions = new ChangeOptions("#change-option", this._data);
+          
+          this._fields.push(colorList);
+          this._fields.push(changeOptions);
+          break;
+        }
+        case "#text":{
+          const textInput = new TextInput("#text-input", this._data);
+          this._fields.push(textInput);
+          break;
+        }
+        case "#code":{
+          const codeViewer = new CodeViewer("#code-viewer", this._data);
+          this._fields.push(codeViewer);
+          break;
+        }
+        default: {
+          console.error("Not found Fragement")
+        }
+      }
+    } else {
+      // Fragment doesn't exist
+      const colorList = new ColorList("#color-list", this._data);
+      const changeOptions = new ChangeOptions("#change-option", this._data);
+      
+      this._fields.push(colorList);
+      this._fields.push(changeOptions);
+    }
   }
 
   public render = () => {
     this._container.innerHTML = this._template;
     this._fields.forEach((field) => {
-      field.render(false);
+      field.render();
 
       if (field.attachEventHandler) {
         field.attachEventHandler();
