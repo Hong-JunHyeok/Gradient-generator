@@ -10,7 +10,7 @@ const template = /* html */ `
         id="text-container" 
         style="
           display: inline-block;
-          font-size: 60px;
+          font-size: 12rem;
         "
       >
         {{textData}}
