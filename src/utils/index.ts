@@ -24,3 +24,5 @@ export const pageOutPrevent = (event: Event) => {
 
   setTimeout(saveContent, 0);
 };
+
+export { fontResizer } from './fontResizer'
