@@ -1,5 +1,4 @@
 import domtoimage from 'dom-to-image';
-import PrevGradient from '../PrevGradient';
 import { IStore } from "../../store";
 import CoreView from "../core-view";
 import template from "./image-export-button.template";
@@ -11,8 +10,6 @@ class ImageExportButton extends CoreView {
 
     this._data = data;
   }
-
-
 
   public attachEventHandler() {
     const prevGradientEl = document.getElementById('prev-gradient');
