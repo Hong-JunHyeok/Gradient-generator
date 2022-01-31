@@ -10,6 +10,13 @@ class PrevGradient extends CoreView {
     super(container, template(data));
 
     this._data = data;
+
+    window.addEventListener('resize', () => {
+      fontResizer({
+        parentElement: document.querySelector<HTMLDivElement>('#prev-gradient')!,
+        textElement: document.querySelector<HTMLParagraphElement>('#text-container')!
+      })
+    })
   }
 
   render = (appendChild?: boolean) => {
