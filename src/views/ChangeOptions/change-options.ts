@@ -62,14 +62,11 @@ class ChangeOptions extends CoreView {
     }
 
     const prevGradient = new PrevGradient("#prev-gradient", this._data);
-    const colorList = new ColorList("#color-list", this._data);
 
     this.render(false);
     this.attachEventHandler();
 
     prevGradient.render(false);
-    colorList.render(false);
-    colorList.attachEventHandler();
   };
 
   private onChangeAngleByButton = (event: Event) => {

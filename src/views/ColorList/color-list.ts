@@ -2,7 +2,6 @@ import PrevGradient from "../PrevGradient";
 import CoreView from "../core-view";
 import template from "./color-list.template";
 import { ColorItem, IStore } from "../../store";
-import CodeViewer from "../CodeViewer";
 
 class ColorList extends CoreView {
   private _data: IStore;
@@ -105,9 +104,7 @@ class ColorList extends CoreView {
     });
 
     const prevGradient = new PrevGradient("#prev-gradient", this._data);
-    const codeViewer = new CodeViewer("#code-viewer", this._data);
 
-    codeViewer.render();
     prevGradient.render(false);
 
     this.onChangeActive(event);
@@ -140,6 +137,14 @@ class ColorList extends CoreView {
     this.attachEventHandler();
   };
 
+  isActiveInput(event: Event) {
+    const colorItemIndex = Number(
+      (event.target as HTMLElement).parentElement?.dataset.index
+    );
+    if(colorItemIndex !== this._data.activeColor.index)
+      event.stopPropagation() 
+  }
+
   attachEventHandler = () => {
     const colorItems = document.querySelectorAll(`#color-item`);
 
@@ -152,9 +157,10 @@ class ColorList extends CoreView {
     const newColor = document.querySelector("#new-color");
     newColor?.addEventListener("click", this.onCreateNewColor);
 
-    const colorInputs = document.querySelectorAll("#color-picker");
+    const colorInputs = document.querySelectorAll("#color-picker-input");
     colorInputs.forEach((colorItem) => {
-      colorItem.addEventListener("input", this.onChangeColor);
+      colorItem.addEventListener("click", this.isActiveInput.bind(this));
+      colorItem.addEventListener("input", this.onChangeColor.bind(this));
       colorItem.addEventListener("blur", () => {
         this.render();
         this.attachEventHandler();
@@ -163,7 +169,7 @@ class ColorList extends CoreView {
   };
 
   render = (appendChild: boolean = false) => {
-    const container = document.querySelector("#color-list");
+    const container = document.querySelector(this._container);
 
     if (appendChild) {
       const divFragment = document.createElement("div");
@@ -172,7 +178,6 @@ class ColorList extends CoreView {
       container?.appendChild(divFragment.children[0]);
     } else {
       if (container) {
-        this.attachEventHandler();
         container.innerHTML = template(this._data);
       }
     }
