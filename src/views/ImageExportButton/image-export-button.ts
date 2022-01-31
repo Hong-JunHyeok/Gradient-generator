@@ -1,3 +1,5 @@
+import domtoimage from 'dom-to-image';
+import PrevGradient from '../PrevGradient';
 import { IStore } from "../../store";
 import CoreView from "../core-view";
 import template from "./image-export-button.template";
@@ -8,6 +10,32 @@ class ImageExportButton extends CoreView {
     super(container, template(data));
 
     this._data = data;
+  }
+
+
+
+  public attachEventHandler() {
+    const prevGradientEl = document.getElementById('prev-gradient');
+    const exportButtonEl = document.getElementById('export-button');
+
+    if(exportButtonEl && prevGradientEl) {
+      let scale = 2;
+      exportButtonEl.addEventListener('click', async() => {
+        const data = await domtoimage.toPng(prevGradientEl, {
+          width: prevGradientEl.clientWidth * scale,
+          height: prevGradientEl.clientHeight * scale,
+          style: {
+            transform: 'scale('+scale+')',
+            transformOrigin: 'top left'
+          }
+        })
+        const link = document.createElement('a');
+        link.href = data;
+        link.download = 'gradient.png';
+        link.click();
+        link.remove();
+      })
+    }
   }
 
   render = (appendChild: boolean) => {
