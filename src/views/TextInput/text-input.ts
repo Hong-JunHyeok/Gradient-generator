@@ -11,11 +11,19 @@ class TextInput extends CoreView {
     this._data = data;
   }
   
+  private initialize() {
+    const textInputEl = document.querySelector<HTMLInputElement>('#input-text')
+
+    if(this._data.textData.textValue && textInputEl) {
+      textInputEl.value = this._data.textData.textValue;
+    }
+  }
+
   private onChangeText = (event: Event) => {
     const prevGradient = new PrevGradient("#prev-gradient", this._data);
     const textValue = (event.target as HTMLInputElement).value;
 
-    this._data.textData = textValue;
+    this._data.textData = { ...this._data.textData , textValue };
     prevGradient.render();
   }
 
@@ -37,6 +45,8 @@ class TextInput extends CoreView {
         container.innerHTML = template(this._data);
       }
     }
+
+    this.initialize()
   }
 }
 

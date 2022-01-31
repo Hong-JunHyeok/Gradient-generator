@@ -26,6 +26,7 @@ const template = /* html */ `
                 </button>
             </div>
             <div id="text-input"></div>
+            <div id="color-picker"></div>
             <section id="palette-gradient">
                 <div id="gradient-bar"></div>
             </section>

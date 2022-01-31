@@ -11,9 +11,10 @@ const template = /* html */ `
         style="
           display: inline-block;
           font-size: 12rem;
+          color: {{textData.textColor}}
         "
       >
-        {{textData}}
+        {{textData.textValue}}
       </p>
     </div>
 `;
