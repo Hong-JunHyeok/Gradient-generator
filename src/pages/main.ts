@@ -3,7 +3,9 @@ import PrevGradient from "../views/PrevGradient";
 import ColorList from "../views/ColorList";
 import ChangeOptions from "../views/ChangeOptions";
 import CodeViewer from "../views/CodeViewer";
+import ColorPicker from "../views/ColorPicker";
 import TextInput from '../views/TextInput'
+import ImageExportButton from '../views/ImageExportButton'
 
 import { title } from "../data/site-meta.json";
 import { AnyObject } from "../types/common";
@@ -31,14 +33,13 @@ export default class MainPage {
 
   private initialize() {
     const prevGradient = new PrevGradient("#prev-gradient", this._data);
-    this._fields = [];
+    const imageExportButton =  new ImageExportButton("#export-button-flag", this._data);
 
-    this._fields.push(prevGradient);
+    this._fields = [prevGradient, imageExportButton];
 
     if(window.location.hash) {
       // Fragment exists
       const fragment = window.location.hash as "#pallete" | "#text" | "#code";
-      console.log(this._fields)
 
       switch(fragment) {
         case "#pallete":{
@@ -51,7 +52,10 @@ export default class MainPage {
         }
         case "#text":{
           const textInput = new TextInput("#text-input", this._data);
+          const colorPicker = new ColorPicker("#color-picker", this._data);
+
           this._fields.push(textInput);
+          this._fields.push(colorPicker);
           break;
         }
         case "#code":{

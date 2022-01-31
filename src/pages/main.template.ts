@@ -8,18 +8,22 @@ const template = /* html */ `
             </div>
         </header>
         <section id="palette" class="relative container mx-auto rounded-lg shadow bg-gray-50 flex flex-col md:flex-wrap-reverse p-3" style="margin-top: 22rem;">
-            <ul class="flex">
-                <li class="mr-3">
-                    <a class="inline-block border shadow-lg rounded hover:border-gray-200 text-blue-500 hover:bg-gray-200 py-1 px-3" href="#pallete">Pallete</a>
-                </li>
-                <li class="mr-3">
-                    <a class="inline-block border shadow-lg rounded hover:border-gray-200 text-blue-500 hover:bg-gray-200 py-1 px-3" href="#text">Text</a>
-                </li>
-                <li class="mr-3">
-                    <a class="inline-block border shadow-lg rounded hover:border-gray-200 text-blue-500 hover:bg-gray-200 py-1 px-3" href="#code">Code Viewer</a>
-                </li>
-            </ul>
+            <div class="flex justify-between">
+                <ul class="flex">
+                    <li class="mr-3">
+                        <a class="inline-block border shadow-lg rounded hover:border-gray-200 text-blue-500 hover:bg-gray-200 py-1 px-3" href="#pallete">Pallete</a>
+                    </li>
+                    <li class="mr-3">
+                        <a class="inline-block border shadow-lg rounded hover:border-gray-200 text-blue-500 hover:bg-gray-200 py-1 px-3" href="#text">Text</a>
+                    </li>
+                    <li class="mr-3">
+                        <a class="inline-block border shadow-lg rounded hover:border-gray-200 text-blue-500 hover:bg-gray-200 py-1 px-3" href="#code">Code Viewer</a>
+                    </li>
+                </ul>
+                <div id="export-button-flag"></div>
+            </div>
             <div id="text-input"></div>
+            <div id="color-picker"></div>
             <section id="palette-gradient">
                 <div id="gradient-bar"></div>
             </section>
