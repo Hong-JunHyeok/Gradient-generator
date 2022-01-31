@@ -46,9 +46,7 @@ class ColorList extends CoreView {
       );
 
       const prevGradient = new PrevGradient("#prev-gradient", this._data);
-      const codeViewer = new CodeViewer("#code-viewer", this._data);
-
-      codeViewer.render();
+      
       prevGradient.render(false);
 
       this.render();
@@ -61,7 +59,6 @@ class ColorList extends CoreView {
     const changeInputIndex = Number(inputElement.dataset.index);
 
     const prevGradient = new PrevGradient("#prev-gradient", this._data);
-    const codeViewer = new CodeViewer("#code-viewer", this._data);
 
     const changeElement = this._data.colorList.find(
       (colorItem: ColorItem) => colorItem.index === changeInputIndex
@@ -82,7 +79,6 @@ class ColorList extends CoreView {
       this.render();
       this.attachEventHandler();
     });
-    codeViewer.render();
     prevGradient.render(false);
   };
 
@@ -137,9 +133,7 @@ class ColorList extends CoreView {
     this._data.colorList = [...this._data.colorList, newColorItem];
 
     const prevGradient = new PrevGradient("#prev-gradient", this._data);
-    const codeViewer = new CodeViewer("#code-viewer", this._data);
 
-    codeViewer.render();
     prevGradient.render(false);
 
     this.render();

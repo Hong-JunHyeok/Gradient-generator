@@ -19,7 +19,6 @@ class ChangeOptions extends CoreView {
     this._data.angle = changeValue;
 
     const prevGradient = new PrevGradient("#prev-gradient", this._data);
-    const codeViewer = new CodeViewer("#code-viewer", this._data);
 
     const allElementsExceptAngle = document.body.querySelectorAll<HTMLElement>(
       "*:not(#angle-container,#prev-gradient)"
@@ -35,7 +34,6 @@ class ChangeOptions extends CoreView {
       angleInner.innerHTML = `Angle : ${this._data.angle}`;
     }
 
-    codeViewer.render();
     prevGradient.render(false);
   };
 
@@ -65,12 +63,10 @@ class ChangeOptions extends CoreView {
 
     const prevGradient = new PrevGradient("#prev-gradient", this._data);
     const colorList = new ColorList("#color-list", this._data);
-    const codeViewer = new CodeViewer("#code-viewer", this._data);
 
     this.render(false);
     this.attachEventHandler();
 
-    codeViewer.render();
     prevGradient.render(false);
     colorList.render(false);
     colorList.attachEventHandler();
@@ -89,10 +85,8 @@ class ChangeOptions extends CoreView {
     }
 
     const prevGradient = new PrevGradient("#prev-gradient", this._data);
-    const codeViewer = new CodeViewer("#code-viewer", this._data);
 
     prevGradient.render(false);
-    codeViewer.render();
 
     this.render(false);
     this.attachEventHandler();
