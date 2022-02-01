@@ -3,7 +3,6 @@ const path = require('path');
 
 module.exports = {
   entry: './src/app.ts',
-  mode: 'development',
   module: {
     rules: [
       {
@@ -28,11 +27,4 @@ module.exports = {
     path: path.resolve(__dirname, 'dist'),
   },
   plugins: [new HtmlWebpackPlugin({ template: './public/index.html' })],
-  devServer: {
-    static: {
-      directory: path.join(__dirname, 'public'),
-    },
-    compress: true,
-    port: 8080,
-  },
 };
