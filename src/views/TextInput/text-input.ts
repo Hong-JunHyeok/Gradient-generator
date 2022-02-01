@@ -1,7 +1,8 @@
+import { IStore } from "@src/store";
+import { saveStoreData } from '@src/utils/localSaver'
 import CoreView from "../core-view";
 import template from "./text-input.template";
 import PrevGradient from "../PrevGradient";
-import { IStore } from "../../store";
 
 class TextInput extends CoreView {
   private _data: IStore;
@@ -25,6 +26,7 @@ class TextInput extends CoreView {
 
     this._data.textData = { ...this._data.textData , textValue };
     prevGradient.render();
+    saveStoreData(this._data);
   }
 
   public attachEventHandler = () => {

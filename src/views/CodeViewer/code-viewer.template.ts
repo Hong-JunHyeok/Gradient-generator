@@ -1,4 +1,4 @@
-import { AnyObject } from "../../types/common";
+import { AnyObject } from "@src/types/common";
 
 const template = /* html */ `
     <style>

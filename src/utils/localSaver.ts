@@ -1,5 +1,5 @@
-import { IStore } from '../store';
-import { GRADIENT_KEY_NAME } from '../constants'
+import { IStore } from '@src/store';
+import { GRADIENT_KEY_NAME } from '@src/constants'
 
 export const saveStoreData = (data: IStore) => {
   const convertedData = JSON.stringify(data);

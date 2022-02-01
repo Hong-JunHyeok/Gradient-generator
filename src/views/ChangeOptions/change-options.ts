@@ -1,9 +1,9 @@
+import { IStore } from "@src/store";
+import { saveStoreData } from '@src/utils/localSaver'
+
 import CoreView from "../core-view";
 import template from "./change-options.template";
 import PrevGradient from "../PrevGradient";
-import ColorList from "../ColorList";
-import CodeViewer from "../CodeViewer";
-import { IStore } from "../../store";
 
 class ChangeOptions extends CoreView {
   private _data: IStore;
@@ -102,6 +102,8 @@ class ChangeOptions extends CoreView {
     changeAngle?.addEventListener("mouseup", this.onBlurAngle);
     increase?.addEventListener("click", this.onChangeAngleByButton);
     decrease?.addEventListener("click", this.onChangeAngleByButton);
+
+    saveStoreData(this._data)
   };
 
   render = (appendChild: boolean) => {

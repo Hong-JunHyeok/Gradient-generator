@@ -1,7 +1,9 @@
+import { ColorItem, IStore } from "@src/store";
+import { saveStoreData } from '@src/utils/localSaver'
+
 import PrevGradient from "../PrevGradient";
 import CoreView from "../core-view";
 import template from "./color-list.template";
-import { ColorItem, IStore } from "../../store";
 
 class ColorList extends CoreView {
   private _data: IStore;
@@ -68,7 +70,6 @@ class ColorList extends CoreView {
 
       this._data.colorList = sortedColorList
       this._data.activeColor = changeElement;
-      console.log(this._data.activeColor)
     }
 
     const prevGradient = new PrevGradient("#prev-gradient", this._data);
@@ -150,6 +151,8 @@ class ColorList extends CoreView {
       colorItem.addEventListener("input", this.onChangeColor.bind(this));
       colorItem.addEventListener("blur", this.render.bind(this, false));
     });
+
+    saveStoreData(this._data)
   };
 
   render = (appendChild: boolean = false) => {

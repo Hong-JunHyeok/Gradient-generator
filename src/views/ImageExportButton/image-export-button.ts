@@ -1,5 +1,5 @@
 import domtoimage from 'dom-to-image';
-import { IStore } from "../../store";
+import { IStore } from "@src/store";
 import CoreView from "../core-view";
 import template from "./image-export-button.template";
 
