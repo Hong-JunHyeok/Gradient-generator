@@ -63,7 +63,7 @@ class Store implements IStore {
     this.angle = 90;
     this.textData = {
       textValue: '',
-      textColor: '#000000'
+      textColor: '#000000',
     }
   }
 }
