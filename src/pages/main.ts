@@ -10,6 +10,7 @@ import ImageExportButton from '../views/ImageExportButton'
 import { title } from "../data/site-meta.json";
 import { AnyObject } from "../types/common";
 import { IStore } from "../store";
+import { getStoreData } from '../utils/localSaver'
 
 export default class MainPage {
   private _template: string;
@@ -32,6 +33,11 @@ export default class MainPage {
   }
 
   private initialize() {
+    const existStoreData = getStoreData();
+    if(existStoreData){
+      this._data = existStoreData;
+    }
+
     const prevGradient = new PrevGradient("#prev-gradient", this._data);
     const imageExportButton =  new ImageExportButton("#export-button-flag", this._data);
 
