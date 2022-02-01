@@ -7,6 +7,12 @@
     "lib": ["es5", "dom"],
     "resolveJsonModule": true,
     "noImplicitThis": false,
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "baseUrl": ".",
+    "paths": {
+      "@src/*": [
+        "src/*"
+      ]
+    }
   }
 }

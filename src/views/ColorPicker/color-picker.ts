@@ -1,7 +1,7 @@
+import { IStore } from "@src/store";
+import { colorSet } from '@src/data/color-data'
 import template from "./color-picker.template";
 import CoreView from "../core-view";
-import { IStore } from "../../store";
-import { colorSet } from '../../data/color-data'
 import PrevGradient from "../PrevGradient";
 
 class ColorPicker extends CoreView {

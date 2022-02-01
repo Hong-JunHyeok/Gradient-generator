@@ -1,8 +1,8 @@
+import { IStore } from "@src/store";
+import {DEFAULT_FONT_SIZE} from '@src/constants';
+import { fontResizer } from '@src/utils';
 import CoreView from "../core-view";
 import template from "./prev-gradient.template";
-import { IStore } from "../../store";
-import {DEFAULT_FONT_SIZE} from '../../constants';
-import { fontResizer } from '../../utils';
 
 class PrevGradient extends CoreView {
   private _data: IStore;

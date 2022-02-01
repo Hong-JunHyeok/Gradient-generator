@@ -1,8 +1,9 @@
+import { IStore } from "@src/store";
+import { saveStoreData } from '@src/utils/localSaver'
+
 import CoreView from "../core-view";
 import template from "./change-options.template";
 import PrevGradient from "../PrevGradient";
-import { IStore } from "../../store";
-import { saveStoreData } from '../../utils/localSaver'
 
 class ChangeOptions extends CoreView {
   private _data: IStore;

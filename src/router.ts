@@ -1,6 +1,6 @@
 import Store from "./store";
-import MainPage from "./pages/main";
-import NotFoundPage from "./pages/notfound";
+import MainPage from "@src/pages/MainPage";
+import NotFoundPage from "@src/pages/NotFoundPage";
 
 interface RoutePaths {
   [key: string]: "/" | "/static";

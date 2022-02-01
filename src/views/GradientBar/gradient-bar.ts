@@ -1,4 +1,4 @@
-import { IStore } from "../../store";
+import { IStore } from "@src/store";
 import CoreView from "../core-view";
 import template from "./gradient-bar.template";
 

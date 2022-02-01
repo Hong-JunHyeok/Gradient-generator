@@ -1,8 +1,9 @@
+import { ColorItem, IStore } from "@src/store";
+import { saveStoreData } from '@src/utils/localSaver'
+
 import PrevGradient from "../PrevGradient";
 import CoreView from "../core-view";
 import template from "./color-list.template";
-import { ColorItem, IStore } from "../../store";
-import { saveStoreData } from '../../utils/localSaver'
 
 class ColorList extends CoreView {
   private _data: IStore;

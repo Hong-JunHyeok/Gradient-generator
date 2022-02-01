@@ -1,16 +1,16 @@
 import template from "./main.template";
-import PrevGradient from "../views/PrevGradient";
-import ColorList from "../views/ColorList";
-import ChangeOptions from "../views/ChangeOptions";
-import CodeViewer from "../views/CodeViewer";
-import ColorPicker from "../views/ColorPicker";
-import TextInput from '../views/TextInput'
-import ImageExportButton from '../views/ImageExportButton'
+import PrevGradient from "@src/views/PrevGradient";
+import ColorList from "@src/views/ColorList";
+import ChangeOptions from "@src/views/ChangeOptions";
+import CodeViewer from "@src/views/CodeViewer";
+import ColorPicker from "@src/views/ColorPicker";
+import TextInput from '@src/views/TextInput'
+import ImageExportButton from '@src/views/ImageExportButton'
 
-import { title } from "../data/site-meta.json";
-import { AnyObject } from "../types/common";
-import { IStore } from "../store";
-import { getStoreData } from '../utils/localSaver'
+import { title } from "@src/data/site-meta.json";
+import { AnyObject } from "@src/types/common";
+import { IStore } from "@src/store";
+import { getStoreData } from '@src/utils/localSaver'
 
 export default class MainPage {
   private _template: string;
