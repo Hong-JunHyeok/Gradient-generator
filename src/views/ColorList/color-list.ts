@@ -9,25 +9,19 @@ class ColorList extends CoreView {
   constructor(container: string, data: IStore) {
     super(container, template(data));
     this._data = data;
-
-    this.attachEventHandler();
   }
 
   onChangeActive = (event: Event) => {
     const colorItemIndex = Number(
       (event.target as HTMLElement).parentElement?.dataset.index
-    );
-
-    if (colorItemIndex !== undefined) {
+      );
+      
+      if (colorItemIndex !== undefined) {
       const findActiveColor = this._data.colorList.find(
         (colorItem: ColorItem) => colorItem.index === colorItemIndex
       );
 
-      if (findActiveColor) {
-        this._data.activeColor = findActiveColor;
-        this.render();
-        this.attachEventHandler();
-      }
+      this._data.activeColor = findActiveColor!;
     }
   };
 
@@ -49,15 +43,12 @@ class ColorList extends CoreView {
       prevGradient.render(false);
 
       this.render();
-      this.attachEventHandler();
     }
   };
 
-  onChange = (event: Event) => {
+  onChangeStop = (event: Event) => {
     const inputElement = event.target as HTMLInputElement;
     const changeInputIndex = Number(inputElement.dataset.index);
-
-    const prevGradient = new PrevGradient("#prev-gradient", this._data);
 
     const changeElement = this._data.colorList.find(
       (colorItem: ColorItem) => colorItem.index === changeInputIndex
@@ -70,14 +61,11 @@ class ColorList extends CoreView {
         stop: Number(inputElement.value),
       };
 
+      this._data.colorList.sort((cur, next) => cur.stop - next.stop);
       this._data.activeColor = changeElement;
-      this._data.colorList.sort((a, b) => a.stop - b.stop);
     }
 
-    inputElement.addEventListener("blur", () => {
-      this.render();
-      this.attachEventHandler();
-    });
+    const prevGradient = new PrevGradient("#prev-gradient", this._data);
     prevGradient.render(false);
   };
 
@@ -91,11 +79,14 @@ class ColorList extends CoreView {
     const inputTarget = event.target as HTMLInputElement;
     const inputTargetIndex = Number(inputTarget.dataset.index);
 
+    console.log(this._data.colorList[inputTargetIndex].stop)
+
     this._data.colorList.forEach((colorItem, index, colorListObj) => {
       if (colorItem.index === inputTargetIndex) {
         this._data.activeColor = {
           ...this._data.activeColor,
           index: inputTargetIndex,
+          stop: this._data.colorList[inputTargetIndex].stop,
           color: ColorList.convertHexToRgb(inputTarget.value),
         };
 
@@ -108,7 +99,6 @@ class ColorList extends CoreView {
     prevGradient.render(false);
 
     this.onChangeActive(event);
-    this.attachEventHandler();
   };
 
   getRandomColor = () => {
@@ -133,38 +123,29 @@ class ColorList extends CoreView {
 
     prevGradient.render(false);
 
-    this.render();
-    this.attachEventHandler();
+    this.render()
   };
-
-  isActiveInput(event: Event) {
-    const colorItemIndex = Number(
-      (event.target as HTMLElement).parentElement?.dataset.index
-    );
-    if(colorItemIndex !== this._data.activeColor.index)
-      event.stopPropagation() 
-  }
 
   attachEventHandler = () => {
     const colorItems = document.querySelectorAll(`#color-item`);
 
     colorItems.forEach((colorItem) => {
       colorItem.children[0]?.addEventListener("click", this.onDelete, false);
-      colorItem.children[2]?.addEventListener("input", this.onChange, false);
+      colorItem.children[2]?.addEventListener("input", this.onChangeStop, false);
+      colorItem.children[2]?.addEventListener("mouseup", () => {
+          this.render();
+          this.attachEventHandler();
+      });
       colorItem.addEventListener("click", this.onChangeActive, false);
     });
 
     const newColor = document.querySelector("#new-color");
     newColor?.addEventListener("click", this.onCreateNewColor);
 
-    const colorInputs = document.querySelectorAll("#color-picker-input");
+    const colorInputs = document.querySelectorAll<HTMLInputElement>("#color-picker-input");
     colorInputs.forEach((colorItem) => {
-      colorItem.addEventListener("click", this.isActiveInput.bind(this));
       colorItem.addEventListener("input", this.onChangeColor.bind(this));
-      colorItem.addEventListener("blur", () => {
-        this.render();
-        this.attachEventHandler();
-      });
+      colorItem.addEventListener("blur", this.render.bind(this, false));
     });
   };
 
@@ -181,6 +162,7 @@ class ColorList extends CoreView {
         container.innerHTML = template(this._data);
       }
     }
+    this.attachEventHandler()
   };
 }
 

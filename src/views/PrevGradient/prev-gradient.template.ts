@@ -11,7 +11,7 @@ const template = /* html */ `
         style="
           display: inline-block;
           font-size: 12rem;
-          color: {{textData.textColor}}
+          color: {{textData.textColor}};
         "
       >
         {{textData.textValue}}

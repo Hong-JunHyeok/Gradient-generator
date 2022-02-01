@@ -1,6 +1,7 @@
 import CoreView from "../core-view";
 import template from "./prev-gradient.template";
 import { IStore } from "../../store";
+import {DEFAULT_FONT_SIZE} from '../../constants';
 import { fontResizer } from '../../utils';
 
 class PrevGradient extends CoreView {
@@ -12,9 +13,14 @@ class PrevGradient extends CoreView {
     this._data = data;
 
     window.addEventListener('resize', () => {
+      const parentElement = document.querySelector<HTMLDivElement>('#prev-gradient')!;
+      const textElement = document.querySelector<HTMLParagraphElement>('#text-container')!;
+
+      textElement.style.fontSize = DEFAULT_FONT_SIZE;
+
       fontResizer({
-        parentElement: document.querySelector<HTMLDivElement>('#prev-gradient')!,
-        textElement: document.querySelector<HTMLParagraphElement>('#text-container')!
+        parentElement,
+        textElement
       })
     })
   }
