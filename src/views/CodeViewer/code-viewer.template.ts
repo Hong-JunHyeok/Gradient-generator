@@ -20,8 +20,7 @@ const template = /* html */ `
     <pre class="flex flex-col">
         <code class="{{codeData}}">
           {{#ifEquals codeData "css"}}
-            <!--CSS Case-->
-          background: {{#if isLinear}}linear{{else}}radial{{/if}}-gradient({{#if isLinear}}{{angle}}deg{{else}}circle{{/if}},{{#each colorList}}{{color}} {{stop}}%{{#if @last}}{{else}},{{/if}}{{/each}})
+background: {{#if isLinear}}linear{{else}}radial{{/if}}-gradient({{#if isLinear}}{{angle}}deg{{else}}circle{{/if}},{{#each colorList}}{{color}} {{stop}}%{{#if @last}}{{else}},{{/if}}{{/each}})
           {{/ifEquals}}
         </code>
         <button id="copy-text" class="w-full py-1" style="">Copy {{codeData}}</button>
