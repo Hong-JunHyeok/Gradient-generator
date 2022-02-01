@@ -12,16 +12,19 @@ class ColorList extends CoreView {
   }
 
   onChangeActive = (event: Event) => {
-    const colorItemIndex = Number(
-      (event.target as HTMLElement).parentElement?.dataset.index
-      );
+    const colorItemIndex = (event.target as HTMLElement).parentElement?.dataset.index
       
-      if (colorItemIndex !== undefined) {
+      
+      if (colorItemIndex) {
       const findActiveColor = this._data.colorList.find(
-        (colorItem: ColorItem) => colorItem.index === colorItemIndex
+        (colorItem: ColorItem) => colorItem.index === Number(colorItemIndex)
       );
 
       this._data.activeColor = findActiveColor!;
+      if (findActiveColor && (event.target as HTMLInputElement).tagName !==  "INPUT") {
+        this._data.activeColor = findActiveColor;
+        this.render()
+      }
     }
   };
 
@@ -38,8 +41,7 @@ class ColorList extends CoreView {
         (colorItem: ColorItem) => colorItem.index !== handleTarget
       );
 
-      const prevGradient = new PrevGradient("#prev-gradient", this._data);
-      
+      const prevGradient = new PrevGradient("#prev-gradient", this._data);   
       prevGradient.render(false);
 
       this.render();
@@ -60,9 +62,13 @@ class ColorList extends CoreView {
         ...changeElement,
         stop: Number(inputElement.value),
       };
+      
+      const sortedColorList = [...this._data.colorList]
+      .sort((cur, next) => cur.stop - next.stop)
 
-      this._data.colorList.sort((cur, next) => cur.stop - next.stop);
+      this._data.colorList = sortedColorList
       this._data.activeColor = changeElement;
+      console.log(this._data.activeColor)
     }
 
     const prevGradient = new PrevGradient("#prev-gradient", this._data);
@@ -79,23 +85,20 @@ class ColorList extends CoreView {
     const inputTarget = event.target as HTMLInputElement;
     const inputTargetIndex = Number(inputTarget.dataset.index);
 
-    console.log(this._data.colorList[inputTargetIndex].stop)
 
-    this._data.colorList.forEach((colorItem, index, colorListObj) => {
-      if (colorItem.index === inputTargetIndex) {
+    this._data.colorList.forEach(({index}, indexNumber, colorListObj) => {
+      if(inputTargetIndex === index){
         this._data.activeColor = {
-          ...this._data.activeColor,
-          index: inputTargetIndex,
-          stop: this._data.colorList[inputTargetIndex].stop,
+          ...this._data.colorList[indexNumber],
+          index:this._data.colorList[indexNumber].index, 
+          stop: this._data.colorList[indexNumber].stop,
           color: ColorList.convertHexToRgb(inputTarget.value),
         };
-
-        colorListObj[index] = this._data.activeColor;
+        colorListObj[indexNumber] = this._data.activeColor;
       }
-    });
+    })
 
     const prevGradient = new PrevGradient("#prev-gradient", this._data);
-
     prevGradient.render(false);
 
     this.onChangeActive(event);
