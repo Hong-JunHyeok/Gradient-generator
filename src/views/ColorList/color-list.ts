@@ -21,11 +21,7 @@ class ColorList extends CoreView {
         (colorItem: ColorItem) => colorItem.index === colorItemIndex
       );
 
-      if (findActiveColor && (event.target as HTMLInputElement).tagName !==  "INPUT") {
-        this._data.activeColor = findActiveColor;
-        this.render()
-        this.attachEventHandler();
-      }
+      this._data.activeColor = findActiveColor!;
     }
   };
 
@@ -47,15 +43,12 @@ class ColorList extends CoreView {
       prevGradient.render(false);
 
       this.render();
-      this.attachEventHandler();
     }
   };
 
-  onChange = (event: Event) => {
+  onChangeStop = (event: Event) => {
     const inputElement = event.target as HTMLInputElement;
     const changeInputIndex = Number(inputElement.dataset.index);
-
-    const prevGradient = new PrevGradient("#prev-gradient", this._data);
 
     const changeElement = this._data.colorList.find(
       (colorItem: ColorItem) => colorItem.index === changeInputIndex
@@ -68,10 +61,11 @@ class ColorList extends CoreView {
         stop: Number(inputElement.value),
       };
 
+      this._data.colorList.sort((cur, next) => cur.stop - next.stop);
       this._data.activeColor = changeElement;
-      this._data.colorList.sort((a, b) => a.stop - b.stop);
     }
 
+    const prevGradient = new PrevGradient("#prev-gradient", this._data);
     prevGradient.render(false);
   };
 
@@ -129,7 +123,7 @@ class ColorList extends CoreView {
 
     prevGradient.render(false);
 
-    this.attachEventHandler();
+    this.render()
   };
 
   attachEventHandler = () => {
@@ -137,7 +131,7 @@ class ColorList extends CoreView {
 
     colorItems.forEach((colorItem) => {
       colorItem.children[0]?.addEventListener("click", this.onDelete, false);
-      colorItem.children[2]?.addEventListener("input", this.onChange, false);
+      colorItem.children[2]?.addEventListener("input", this.onChangeStop, false);
       colorItem.children[2]?.addEventListener("mouseup", () => {
           this.render();
           this.attachEventHandler();
@@ -151,10 +145,7 @@ class ColorList extends CoreView {
     const colorInputs = document.querySelectorAll<HTMLInputElement>("#color-picker-input");
     colorInputs.forEach((colorItem) => {
       colorItem.addEventListener("input", this.onChangeColor.bind(this));
-      colorItem.addEventListener("blur", () => {
-        this.render();
-        this.attachEventHandler();
-      });
+      colorItem.addEventListener("blur", this.render.bind(this, false));
     });
   };
 
@@ -171,6 +162,7 @@ class ColorList extends CoreView {
         container.innerHTML = template(this._data);
       }
     }
+    this.attachEventHandler()
   };
 }
 
