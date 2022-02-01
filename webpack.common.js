@@ -23,7 +23,7 @@ module.exports = {
     },
   },
   output: {
-    filename: '[name].[chunkhash].js',
+    filename: 'bundle.js',
     path: path.resolve(__dirname, 'dist'),
   },
   plugins: [new HtmlWebpackPlugin({ template: './public/index.html' })],
