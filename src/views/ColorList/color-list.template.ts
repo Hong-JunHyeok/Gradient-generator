@@ -1,4 +1,4 @@
-import { AnyObject } from "../types/common";
+import { AnyObject } from "@src/types/common";
 
 const template = /* html */ `
     <header id="color-info-container">
@@ -27,7 +27,7 @@ const template = /* html */ `
           <tr id="color-item" data-index="{{this.index}}" class="{{#ifEquals this.index ../activeColor.index}}rounded ring-4 ring-indigo-300{{/ifEquals}} cursor-pointer ring-inset">
               <td class="px-6 py-4 whitespace-nowrap"><button class="w-12 font-bold" data-index="{{this.index}}">&times;</button></td>
               <td class="px-6 py-5" data-index="{{this.index}}">                
-                <input id="color-picker" data-index="{{this.index}}" name="color-picker" type="color" class="w-0 p-5 rounded" style="background: {{this.color}};">
+                <input id="color-picker-input" data-index="{{this.index}}" name="color-picker" type="color" class="w-0 p-5 rounded" style="background: {{this.color}};">
               </td>
               <td class="px-6 py-4 whitespace-nowrap" data-index="{{this.index}}">
                 <input id="change-stop" data-index="{{this.index}}" value="{{this.stop}}" class="input-{{this.index}} rounded-lg overflow-hidden appearance-none bg-gray-400 h-3 w-128" type="range" min="0" max="100"></input>

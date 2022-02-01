@@ -1,10 +1,9 @@
-import CoreView from "./core-view";
+import { IStore } from "@src/store";
+import { saveStoreData } from '@src/utils/localSaver'
+
+import CoreView from "../core-view";
 import template from "./change-options.template";
-import PrevGradient from "./prev-gradient";
-import ColorList from "./color-list";
-import CodeViewer from "./code-viewer";
-import { IStore } from "../store";
-import changeOptionsTemplate from "./change-options.template";
+import PrevGradient from "../PrevGradient";
 
 class ChangeOptions extends CoreView {
   private _data: IStore;
@@ -20,7 +19,6 @@ class ChangeOptions extends CoreView {
     this._data.angle = changeValue;
 
     const prevGradient = new PrevGradient("#prev-gradient", this._data);
-    const codeViewer = new CodeViewer("#code-viewer", this._data);
 
     const allElementsExceptAngle = document.body.querySelectorAll<HTMLElement>(
       "*:not(#angle-container,#prev-gradient)"
@@ -36,8 +34,8 @@ class ChangeOptions extends CoreView {
       angleInner.innerHTML = `Angle : ${this._data.angle}`;
     }
 
-    codeViewer.render();
     prevGradient.render(false);
+    saveStoreData(this._data);
   };
 
   private onBlurAngle = (event: Event) => {
@@ -65,16 +63,11 @@ class ChangeOptions extends CoreView {
     }
 
     const prevGradient = new PrevGradient("#prev-gradient", this._data);
-    const colorList = new ColorList("#color-list", this._data);
-    const codeViewer = new CodeViewer("#code-viewer", this._data);
 
     this.render(false);
     this.attachEventHandler();
 
-    codeViewer.render();
     prevGradient.render(false);
-    colorList.render(false);
-    colorList.attachEventHandler();
   };
 
   private onChangeAngleByButton = (event: Event) => {
@@ -90,10 +83,8 @@ class ChangeOptions extends CoreView {
     }
 
     const prevGradient = new PrevGradient("#prev-gradient", this._data);
-    const codeViewer = new CodeViewer("#code-viewer", this._data);
 
     prevGradient.render(false);
-    codeViewer.render();
 
     this.render(false);
     this.attachEventHandler();
@@ -112,6 +103,8 @@ class ChangeOptions extends CoreView {
     changeAngle?.addEventListener("mouseup", this.onBlurAngle);
     increase?.addEventListener("click", this.onChangeAngleByButton);
     decrease?.addEventListener("click", this.onChangeAngleByButton);
+
+    saveStoreData(this._data)
   };
 
   render = (appendChild: boolean) => {

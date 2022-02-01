@@ -1,14 +1,14 @@
 import Store from "./store";
-import MainPage from "./pages/main";
-import NotFoundPage from "./pages/notfound";
+import MainPage from "@src/pages/MainPage";
+import NotFoundPage from "@src/pages/NotFoundPage";
 
 interface RoutePaths {
-  [key: string]: "/" | "/login";
+  [key: string]: "/" | "/static";
 }
 
 const routePaths: RoutePaths = {
   MAIN_PATH: "/",
-  LOGIN_PATH: "/login",
+  STATIC_PATH: "/static"
 };
 
 const store = new Store();

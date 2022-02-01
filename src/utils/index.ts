@@ -1,4 +1,4 @@
-import { AnyObject } from "../types/common";
+import { AnyObject } from "@src/types/common";
 
 export const nextTick = (fn: Function) => setTimeout(fn, 16);
 
@@ -24,3 +24,5 @@ export const pageOutPrevent = (event: Event) => {
 
   setTimeout(saveContent, 0);
 };
+
+export { fontResizer } from './fontResizer'

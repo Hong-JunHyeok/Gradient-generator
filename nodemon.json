@@ -1,0 +1,8 @@
+{
+  "watch": ["server"],
+  "ignore": ["node_modules"],
+  "ext": "ts,mjs,js,json,graphql",
+  "exec": "ts-node server/server.ts",
+  "legacyWatch": true,
+  "delay": 500
+}

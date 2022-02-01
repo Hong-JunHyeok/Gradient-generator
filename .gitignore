@@ -3,3 +3,4 @@
 /.parcel-cache
 /.cache
 /.yarn
+.env
