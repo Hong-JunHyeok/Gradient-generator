@@ -35,6 +35,7 @@ class ChangeOptions extends CoreView {
     }
 
     prevGradient.render(false);
+    saveStoreData(this._data);
   };
 
   private onBlurAngle = (event: Event) => {

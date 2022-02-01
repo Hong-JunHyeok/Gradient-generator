@@ -1,5 +1,6 @@
 import { IStore } from "@src/store";
 import { colorSet } from '@src/data/color-data'
+import { saveStoreData } from '@src/utils/localSaver'
 import template from "./color-picker.template";
 import CoreView from "../core-view";
 import PrevGradient from "../PrevGradient";
@@ -23,6 +24,7 @@ class ColorPicker extends CoreView {
       const prevGradient = new PrevGradient("#prev-gradient", this._data);
 
       prevGradient.render();
+      saveStoreData(this._data);
     }
   }
 
