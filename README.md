@@ -63,7 +63,9 @@ yarn build
     "ts-loader": "^9.2.6",
     "ts-node": "^10.4.0",
     "typescript": ">=3.0.0",
+    "webpack-bundle-analyzer": "^4.5.0",
     "webpack-cli": "^4.9.2",
-    "webpack-dev-server": "^4.7.3"
+    "webpack-dev-server": "^4.7.3",
+    "webpack-merge": "^5.8.0"
   }
 ```
