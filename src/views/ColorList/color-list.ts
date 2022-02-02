@@ -136,7 +136,7 @@ class ColorList extends CoreView {
     colorItems.forEach((colorItem) => {
       colorItem.children[0]?.addEventListener("click", this.onDelete, false);
       colorItem.children[2]?.addEventListener("input", this.onChangeStop, false);
-      colorItem.children[2]?.addEventListener("mouseup", () => {
+      colorItem.children[2]?.addEventListener("pointerup", () => {
           this.render();
           this.attachEventHandler();
       });

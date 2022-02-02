@@ -100,7 +100,7 @@ class ChangeOptions extends CoreView {
     lieanrButton?.addEventListener("click", this.onClick);
     radianButton?.addEventListener("click", this.onClick);
     changeAngle?.addEventListener("input", this.onChangeAangle);
-    changeAngle?.addEventListener("mouseup", this.onBlurAngle);
+    changeAngle?.addEventListener("pointerup", this.onBlurAngle);
     increase?.addEventListener("click", this.onChangeAngleByButton);
     decrease?.addEventListener("click", this.onChangeAngleByButton);
 
