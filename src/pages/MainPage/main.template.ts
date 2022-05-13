@@ -1,7 +1,7 @@
 const template = /* html */ `
     <main>
         <header class="w-full shadow font-bold fixed top-0 left-0">
-            <div id="prev-gradient" class="w-full h-80 bg-gray-100">
+            <div id="prev-gradient-container" class="w-full h-80 bg-gray-100">
             </div>
         </header>
         <section id="palette" class="relative container mx-auto rounded-lg shadow bg-gray-50 flex flex-col md:flex-wrap-reverse p-3" style="margin-top: 18rem;">

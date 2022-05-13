@@ -1,3 +1,4 @@
+import Handlebars from "handlebars";
 import { AnyObject } from "@src/types/common";
 
 const template = /* html */ `
@@ -27,16 +28,11 @@ background: {{#if isLinear}}linear{{else}}radial{{/if}}-gradient({{#if isLinear}
     </pre>
     `;
 
-const {
-  allowInsecurePrototypeAccess,
-} = require("@handlebars/allow-prototype-access");
-const insecureHandlebars = allowInsecurePrototypeAccess(window.Handlebars);
-
-insecureHandlebars.registerHelper(
+Handlebars.registerHelper(
   "ifEquals",
   function (arg1: any, arg2: any, options: AnyObject) {
     return arg1 === arg2 ? options.fn(this) : options.inverse(this);
   }
 );
 
-export default insecureHandlebars.compile(template);
+export default Handlebars.compile(template);

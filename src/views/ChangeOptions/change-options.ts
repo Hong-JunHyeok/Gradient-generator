@@ -18,8 +18,6 @@ class ChangeOptions extends CoreView {
 
     this._data.angle = changeValue;
 
-    const prevGradient = new PrevGradient("#prev-gradient", this._data);
-
     const allElementsExceptAngle = document.body.querySelectorAll<HTMLElement>(
       "*:not(#angle-container,#prev-gradient)"
     );
@@ -34,7 +32,7 @@ class ChangeOptions extends CoreView {
       angleInner.innerHTML = `Angle : ${this._data.angle}`;
     }
 
-    prevGradient.render(false);
+    PrevGradient.colorChange(this._data);
     saveStoreData(this._data);
   };
 
@@ -62,12 +60,9 @@ class ChangeOptions extends CoreView {
         throw new Error("Unhandled Error");
     }
 
-    const prevGradient = new PrevGradient("#prev-gradient", this._data);
-
-    this.render(false);
-    this.attachEventHandler();
-
-    prevGradient.render(false);
+    
+    PrevGradient.colorChange(this._data);
+    this.render(template(this._data), this.attachEventHandler);
   };
 
   private onChangeAngleByButton = (event: Event) => {
@@ -82,11 +77,8 @@ class ChangeOptions extends CoreView {
       this._data.angle += 1;
     }
 
-    const prevGradient = new PrevGradient("#prev-gradient", this._data);
-
-    prevGradient.render(false);
-
-    this.render(false);
+    PrevGradient.colorChange(this._data);
+    this.render(template(this._data));
     this.attachEventHandler();
   };
 
@@ -105,20 +97,6 @@ class ChangeOptions extends CoreView {
     decrease?.addEventListener("click", this.onChangeAngleByButton);
 
     saveStoreData(this._data)
-  };
-
-  render = (appendChild: boolean) => {
-    const container = document.querySelector(this._container);
-
-    if (appendChild) {
-      const divFragment = document.createElement("div");
-      divFragment.innerHTML = template(this._data);
-      container?.appendChild(divFragment.children[0]);
-    } else {
-      if (container) {
-        container.innerHTML = template(this._data);
-      }
-    }
   };
 }
 

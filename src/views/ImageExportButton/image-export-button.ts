@@ -35,19 +35,19 @@ class ImageExportButton extends CoreView {
     }
   }
 
-  render = (appendChild: boolean) => {
-    const container = document.querySelector(this._container);
+  // render = (appendChild: boolean) => {
+  //   const container = document.querySelector(this._container);
 
-    if (appendChild) {
-      const divFragment = document.createElement("div");
-      divFragment.innerHTML = template(this._data);
-      container?.appendChild(divFragment.children[0]);
-    } else {
-      if (container) {
-        container.innerHTML = template(this._data);
-      }
-    }
-  };
+  //   if (appendChild) {
+  //     const divFragment = document.createElement("div");
+  //     divFragment.innerHTML = template(this._data);
+  //     container?.appendChild(divFragment.children[0]);
+  //   } else {
+  //     if (container) {
+  //       container.innerHTML = template(this._data);
+  //     }
+  //   }
+  // };
 }
 
 export default ImageExportButton;

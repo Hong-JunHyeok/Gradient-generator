@@ -21,9 +21,9 @@ class ColorPicker extends CoreView {
     if(colorHex) {
       this._data.textData.textColor = colorHex
 
-      const prevGradient = new PrevGradient("#prev-gradient", this._data);
+      // const prevGradient = new PrevGradient("#prev-gradient", this._data);
+      // prevGradient.render();
 
-      prevGradient.render();
       saveStoreData(this._data);
     }
   }
@@ -36,19 +36,19 @@ class ColorPicker extends CoreView {
     })    
   }
 
-  render = (appendChild: boolean) => {
-    const container = document.querySelector(this._container);
+  // render = (appendChild: boolean) => {
+  //   const container = document.querySelector(this._container);
 
-    if (appendChild) {
-      const divFragment = document.createElement("div");
-      divFragment.innerHTML = template(this._data);
-      container?.appendChild(divFragment.children[0]);
-    } else {
-      if (container) {
-        container.innerHTML = template({...this._data, colorSet});
-      }
-    }
-  }
+  //   if (appendChild) {
+  //     const divFragment = document.createElement("div");
+  //     divFragment.innerHTML = template(this._data);
+  //     container?.appendChild(divFragment.children[0]);
+  //   } else {
+  //     if (container) {
+  //       container.innerHTML = template({...this._data, colorSet});
+  //     }
+  //   }
+  // }
 }
 
 export default ColorPicker;

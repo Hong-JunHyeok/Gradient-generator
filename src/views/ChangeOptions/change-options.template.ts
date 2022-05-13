@@ -1,3 +1,5 @@
+import { compile } from 'handlebars';
+
 const template = /* html */ `
 <div class="flex items-center justify-center flex-col">
   <div>
@@ -21,9 +23,4 @@ const template = /* html */ `
 </div>
 `;
 
-const {
-  allowInsecurePrototypeAccess,
-} = require("@handlebars/allow-prototype-access");
-const insecureHandlebars = allowInsecurePrototypeAccess(window.Handlebars);
-
-export default insecureHandlebars.compile(template);
+export default compile(template);

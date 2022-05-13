@@ -25,24 +25,20 @@ class PrevGradient extends CoreView {
     })
   }
 
-  render = (appendChild?: boolean) => {
-    const container = document.querySelector(this._container);
-
-    if (appendChild) {
-      const divFragment = document.createElement("div");
-      divFragment.innerHTML = template(this._data);
-      container?.appendChild(divFragment.children[0]);
-    } else {
-      if (container) {
-        container.innerHTML = template(this._data);
-      }
-    }
-
-    fontResizer({
-      parentElement: document.querySelector<HTMLDivElement>('#prev-gradient')!,
-      textElement: document.querySelector<HTMLParagraphElement>('#text-container')!
+  static colorChange = ({isLinear, colorList, angle}: IStore) => {
+    let inlineStyle = `
+    ${isLinear ? 'linear' : 'radial'}-gradient(${isLinear ? `${angle}deg` : `circle`},
+    `;
+    
+    colorList.forEach(({color, stop}) => {
+      inlineStyle += `${color} ${stop}%,`
     })
-  };
+    inlineStyle = inlineStyle.slice(0, -1);
+    
+    const prevGradient = document.querySelector<HTMLDivElement>('#prev-gradient')!;
+    prevGradient.style.background = inlineStyle;
+    console.log(prevGradient.style.background);
+  }
 }
 
 export default PrevGradient;

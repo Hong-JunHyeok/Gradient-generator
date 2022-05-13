@@ -1,3 +1,5 @@
+import { compile } from 'handlebars'
+
 const template = /* html */ `
   <div class="max-w-sm rounded-full overflow-hidden shadow-2xl">
     <div class="px-6 py-4">
@@ -15,9 +17,9 @@ const template = /* html */ `
   </div>
 `;
 
-const {
-  allowInsecurePrototypeAccess,
-} = require("@handlebars/allow-prototype-access");
-const insecureHandlebars = allowInsecurePrototypeAccess(window.Handlebars);
+// const {
+//   allowInsecurePrototypeAccess,
+// } = require("@handlebars/allow-prototype-access");
+// const insecureHandlebars = allowInsecurePrototypeAccess(window.Handlebars);
 
-export default insecureHandlebars.compile(template);
+export default compile(template);

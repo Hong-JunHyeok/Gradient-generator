@@ -23,8 +23,12 @@ module.exports = {
   resolve: {
     extensions: ['.tsx', '.ts', '.js'],
     alias: {
+      'handlebars': 'handlebars/dist/handlebars.js',
       '@src': path.resolve(__dirname, 'src'),
     },
+    fallback: {
+      fs: false
+    }
   },
   output: {
     filename: '[name].[chunkhash].js',

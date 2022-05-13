@@ -1,9 +1,10 @@
 import { ColorItem, IStore } from "@src/store";
 import { saveStoreData } from '@src/utils/localSaver'
 
-import PrevGradient from "../PrevGradient";
+import PrevGradient, { prevGradientTemplate } from "../PrevGradient";
 import CoreView from "../core-view";
 import template from "./color-list.template";
+import { colorListTemplate } from ".";
 
 class ColorList extends CoreView {
   private _data: IStore;
@@ -16,7 +17,6 @@ class ColorList extends CoreView {
   onChangeActive = (event: Event) => {
     const colorItemIndex = (event.target as HTMLElement).parentElement?.dataset.index
       
-      
       if (colorItemIndex) {
       const findActiveColor = this._data.colorList.find(
         (colorItem: ColorItem) => colorItem.index === Number(colorItemIndex)
@@ -25,7 +25,8 @@ class ColorList extends CoreView {
       this._data.activeColor = findActiveColor!;
       if (findActiveColor && (event.target as HTMLInputElement).tagName !==  "INPUT") {
         this._data.activeColor = findActiveColor;
-        this.render()
+        this.render(template(this._data), this.attachEventHandler);
+        saveStoreData(this._data)
       }
     }
   };
@@ -34,19 +35,16 @@ class ColorList extends CoreView {
     event.preventDefault();
     const handleTarget = Number((event.target as HTMLElement).dataset.index);
 
-    if (this._data.colorList.length === 2) {
-      return;
-    }
+    if (this._data.colorList.length === 2) return;
 
     if (!isNaN(handleTarget)) {
       this._data.colorList = this._data.colorList.filter(
         (colorItem: ColorItem) => colorItem.index !== handleTarget
       );
 
-      const prevGradient = new PrevGradient("#prev-gradient", this._data);   
-      prevGradient.render(false);
-
-      this.render();
+      PrevGradient.colorChange(this._data);
+      this.render(template(this._data), this.attachEventHandler);
+      saveStoreData(this._data)
     }
   };
 
@@ -72,8 +70,10 @@ class ColorList extends CoreView {
       this._data.activeColor = changeElement;
     }
 
-    const prevGradient = new PrevGradient("#prev-gradient", this._data);
-    prevGradient.render(false);
+    PrevGradient.colorChange(this._data);
+    saveStoreData(this._data)
+    // const prevGradient = new PrevGradient("#prev-gradient", this._data);
+    // prevGradient.render(prevGradientTemplate(this._data), this.attachEventHandler);
   };
 
   static convertHexToRgb = (hexCode: string) => {
@@ -85,7 +85,6 @@ class ColorList extends CoreView {
   onChangeColor = (event: Event) => {
     const inputTarget = event.target as HTMLInputElement;
     const inputTargetIndex = Number(inputTarget.dataset.index);
-
 
     this._data.colorList.forEach(({index}, indexNumber, colorListObj) => {
       if(inputTargetIndex === index){
@@ -99,11 +98,16 @@ class ColorList extends CoreView {
       }
     })
 
-    const prevGradient = new PrevGradient("#prev-gradient", this._data);
-    prevGradient.render(false);
-
+    PrevGradient.colorChange(this._data);
     this.onChangeActive(event);
+    saveStoreData(this._data);
   };
+
+  onBlurColorInput = () => {
+    const colorList = new ColorList("#color-list", this._data);
+    colorList.render(colorListTemplate(this._data), this.attachEventHandler);
+    saveStoreData(this._data);
+  }
 
   getRandomColor = () => {
     const letters = "0123456789ABCDEF";
@@ -116,31 +120,31 @@ class ColorList extends CoreView {
 
   onCreateNewColor = () => {
     const newColorItem = {
-      color: this._data.activeColor.color,
+      color: this._data.activeColor!.color,
       stop: this._data.colorList[this._data.colorList.length - 1].stop + 1,
       index: this._data.colorItemIndex++,
     };
 
     this._data.colorList = [...this._data.colorList, newColorItem];
-
-    const prevGradient = new PrevGradient("#prev-gradient", this._data);
-
-    prevGradient.render(false);
-
-    this.render()
+    PrevGradient.colorChange(this._data);
+    this.render(template(this._data), this.attachEventHandler)
+    saveStoreData(this._data)
   };
+
+  onPointerUp = () => {
+    this.render(template(this._data))
+    this.attachEventHandler();
+    saveStoreData(this._data)
+  }
 
   attachEventHandler = () => {
     const colorItems = document.querySelectorAll(`#color-item`);
 
     colorItems.forEach((colorItem) => {
-      colorItem.children[0]?.addEventListener("click", this.onDelete, false);
-      colorItem.children[2]?.addEventListener("input", this.onChangeStop, false);
-      colorItem.children[2]?.addEventListener("pointerup", () => {
-          this.render();
-          this.attachEventHandler();
-      });
-      colorItem.addEventListener("click", this.onChangeActive, false);
+      colorItem.children[0]?.addEventListener("click", this.onDelete);
+      colorItem.children[2]?.addEventListener("input", this.onChangeStop);
+      colorItem.children[2]?.addEventListener("pointerup", this.onPointerUp);
+      colorItem.addEventListener("click", this.onChangeActive);
     });
 
     const newColor = document.querySelector("#new-color");
@@ -149,26 +153,8 @@ class ColorList extends CoreView {
     const colorInputs = document.querySelectorAll<HTMLInputElement>("#color-picker-input");
     colorInputs.forEach((colorItem) => {
       colorItem.addEventListener("input", this.onChangeColor.bind(this));
-      colorItem.addEventListener("blur", this.render.bind(this, false));
+      colorItem.addEventListener("blur", this.onBlurColorInput.bind(this));
     });
-
-    saveStoreData(this._data)
-  };
-
-  render = (appendChild: boolean = false) => {
-    const container = document.querySelector(this._container);
-
-    if (appendChild) {
-      const divFragment = document.createElement("div");
-      divFragment.innerHTML = template(this._data);
-
-      container?.appendChild(divFragment.children[0]);
-    } else {
-      if (container) {
-        container.innerHTML = template(this._data);
-      }
-    }
-    this.attachEventHandler()
   };
 }
 

@@ -1,3 +1,5 @@
+import { compile } from 'handlebars'
+
 const template = /* html */ `
   <button id="export-button" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded inline-flex items-center">
     <svg class="fill-current w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
@@ -7,9 +9,9 @@ const template = /* html */ `
   </button>
 `;
 
-const {
-  allowInsecurePrototypeAccess,
-} = require("@handlebars/allow-prototype-access");
-const insecureHandlebars = allowInsecurePrototypeAccess(window.Handlebars);
+// const {
+//   allowInsecurePrototypeAccess,
+// } = require("@handlebars/allow-prototype-access");
+// const insecureHandlebars = allowInsecurePrototypeAccess(window.Handlebars);
 
-export default insecureHandlebars.compile(template);
+export default compile(template);

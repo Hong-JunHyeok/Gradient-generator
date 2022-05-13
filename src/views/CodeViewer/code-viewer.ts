@@ -51,24 +51,7 @@ class CodeViewer extends CoreView {
       this._data.codeData = buttonDataset;
     }
 
-    this.render();
-  };
-
-  render = (appendChild: boolean = false) => {
-    const container = document.querySelector(this._container);
-
-    if (appendChild) {
-      const divFragment = document.createElement("div");
-      divFragment.innerHTML = template(this._data);
-
-      container?.appendChild(divFragment.children[0]);
-      this.initialize();
-    } else {
-      if (container) {
-        container.innerHTML = template(this._data);
-        this.initialize();
-      }
-    }
+    this.render(template(this._data), this.initialize);
   };
 }
 

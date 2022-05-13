@@ -2,7 +2,7 @@ import { IStore } from "@src/store";
 import { saveStoreData } from '@src/utils/localSaver'
 import CoreView from "../core-view";
 import template from "./text-input.template";
-import PrevGradient from "../PrevGradient";
+import PrevGradient, { prevGradientTemplate } from "../PrevGradient";
 
 class TextInput extends CoreView {
   private _data: IStore;
@@ -21,11 +21,13 @@ class TextInput extends CoreView {
   }
 
   private onChangeText = (event: Event) => {
-    const prevGradient = new PrevGradient("#prev-gradient", this._data);
     const textValue = (event.target as HTMLInputElement).value;
-
+    
     this._data.textData = { ...this._data.textData , textValue };
-    prevGradient.render();
+
+
+    const prevGradient = new PrevGradient("#prev-gradient", this._data);
+    prevGradient.render(prevGradientTemplate(this._data));
     saveStoreData(this._data);
   }
 
@@ -33,22 +35,7 @@ class TextInput extends CoreView {
     const textInputEl = document.querySelector<HTMLInputElement>('#text-input');
 
     textInputEl?.addEventListener('input', this.onChangeText)
-  }
-
-  render = (appendChild: boolean) => {
-    const container = document.querySelector(this._container);
-
-    if (appendChild) {
-      const divFragment = document.createElement("div");
-      divFragment.innerHTML = template(this._data);
-      container?.appendChild(divFragment.children[0]);
-    } else {
-      if (container) {
-        container.innerHTML = template(this._data);
-      }
-    }
-
-    this.initialize()
+    this.initialize();
   }
 }
 
