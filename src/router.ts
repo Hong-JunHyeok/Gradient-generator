@@ -18,6 +18,7 @@ function router() {
 
   switch (path) {
     case routePaths.MAIN_PATH:
+      console.log(store);
       const mainPage = new MainPage("root", store);
       mainPage.render();
       break;

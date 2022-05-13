@@ -1,5 +1,4 @@
 import { IStore } from "@src/store";
-import { colorSet } from '@src/data/color-data'
 import { saveStoreData } from '@src/utils/localSaver'
 import template from "./color-picker.template";
 import CoreView from "../core-view";
@@ -17,13 +16,9 @@ class ColorPicker extends CoreView {
     const colorItemEl = event.target as HTMLLIElement;
     const colorHex = colorItemEl.dataset.colorhex;
 
-
     if(colorHex) {
       this._data.textData.textColor = colorHex
-
-      // const prevGradient = new PrevGradient("#prev-gradient", this._data);
-      // prevGradient.render();
-
+      PrevGradient.colorChange(colorHex);
       saveStoreData(this._data);
     }
   }
@@ -33,22 +28,8 @@ class ColorPicker extends CoreView {
 
     colorListEl.forEach((colorItem) => {
       colorItem.addEventListener('click', this.changeTextColor.bind(this))
-    })    
+    })
   }
-
-  // render = (appendChild: boolean) => {
-  //   const container = document.querySelector(this._container);
-
-  //   if (appendChild) {
-  //     const divFragment = document.createElement("div");
-  //     divFragment.innerHTML = template(this._data);
-  //     container?.appendChild(divFragment.children[0]);
-  //   } else {
-  //     if (container) {
-  //       container.innerHTML = template({...this._data, colorSet});
-  //     }
-  //   }
-  // }
 }
 
 export default ColorPicker;

@@ -42,7 +42,7 @@ class ColorList extends CoreView {
         (colorItem: ColorItem) => colorItem.index !== handleTarget
       );
 
-      PrevGradient.colorChange(this._data);
+      PrevGradient.backgroundColorChange(this._data);
       this.render(template(this._data), this.attachEventHandler);
       saveStoreData(this._data)
     }
@@ -70,7 +70,7 @@ class ColorList extends CoreView {
       this._data.activeColor = changeElement;
     }
 
-    PrevGradient.colorChange(this._data);
+    PrevGradient.backgroundColorChange(this._data);
     saveStoreData(this._data)
     // const prevGradient = new PrevGradient("#prev-gradient", this._data);
     // prevGradient.render(prevGradientTemplate(this._data), this.attachEventHandler);
@@ -98,7 +98,7 @@ class ColorList extends CoreView {
       }
     })
 
-    PrevGradient.colorChange(this._data);
+    PrevGradient.backgroundColorChange(this._data);
     this.onChangeActive(event);
     saveStoreData(this._data);
   };
@@ -126,7 +126,7 @@ class ColorList extends CoreView {
     };
 
     this._data.colorList = [...this._data.colorList, newColorItem];
-    PrevGradient.colorChange(this._data);
+    PrevGradient.backgroundColorChange(this._data);
     this.render(template(this._data), this.attachEventHandler)
     saveStoreData(this._data)
   };

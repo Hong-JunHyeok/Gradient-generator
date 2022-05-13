@@ -5,12 +5,14 @@ const template = /* html */ `
     id="prev-gradient"
     style="
       text-align: center;
+      height: 100%;
     "
-    class="h-full grid place-content-center">
+    class="grid place-content-center">
       <p 
         id="text-container" 
         style="
-          display: inline-block;
+          disflex: flex;
+          flex-wrap: wrap;
           font-size: 12rem;
           color: {{textData.textColor}};
         "

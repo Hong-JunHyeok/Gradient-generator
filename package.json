@@ -8,7 +8,7 @@
   },
   "scripts": {
     "build": "webpack --config webpack.prod.js",
-    "dev": "concurrently \"webpack serve --open --config webpack.dev.js\" \"nodemon\"",
+    "dev": "webpack serve --open --config webpack.dev.js",
     "deploy": "gh-pages -d dist"
   },
   "author": "Hong-JunHyeok",

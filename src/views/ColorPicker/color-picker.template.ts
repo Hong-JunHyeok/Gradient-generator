@@ -6,7 +6,7 @@ const template = /* html */ `
       <ul class="flex">
         {{#each colorSet}}
           <li 
-            style="background-color: {{ this }};"
+            style="background-color: {{this}};"
             class="pallete_color w-8 h-8 rounded cursor-pointer shadow-md hover:bg-violet-400" 
             data-colorHex="{{this}}"
             >
@@ -16,10 +16,5 @@ const template = /* html */ `
     </div>
   </div>
 `;
-
-// const {
-//   allowInsecurePrototypeAccess,
-// } = require("@handlebars/allow-prototype-access");
-// const insecureHandlebars = allowInsecurePrototypeAccess(window.Handlebars);
 
 export default compile(template);

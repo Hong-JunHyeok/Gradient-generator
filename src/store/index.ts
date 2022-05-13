@@ -1,3 +1,5 @@
+import { colorSet } from "@src/data/color-data";
+
 export interface ColorItem {
   stop: number;
   color: string;
@@ -34,6 +36,7 @@ class Store implements IStore {
   public codeData: Type;
   public codeTypes: CodeType<Type>[];
   public angle: number;
+  public colorSet: any;
   public textData: TextData;
 
   constructor() {
@@ -61,6 +64,7 @@ class Store implements IStore {
     this.codeData = "css";
     this.codeTypes = [{ type: "css", specialColor: "#2965f1" }];
     this.angle = 90;
+    this.colorSet = colorSet;
     this.textData = {
       textValue: '',
       textColor: '#000000',

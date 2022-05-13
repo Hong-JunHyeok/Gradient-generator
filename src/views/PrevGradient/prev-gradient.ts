@@ -11,21 +11,24 @@ class PrevGradient extends CoreView {
     super(container, template(data));
 
     this._data = data;
-
-    window.addEventListener('resize', () => {
-      const parentElement = document.querySelector<HTMLDivElement>('#prev-gradient')!;
-      const textElement = document.querySelector<HTMLParagraphElement>('#text-container')!;
-
-      textElement.style.fontSize = DEFAULT_FONT_SIZE;
-
-      fontResizer({
-        parentElement,
-        textElement
-      })
-    })
+    
+    window.addEventListener('resize', this.fontResizing)
   }
 
-  static colorChange = ({isLinear, colorList, angle}: IStore) => {
+  public fontResizing = () => {
+    const parentElement = document.querySelector<HTMLDivElement>('#prev-gradient')!;
+    const textElement = document.querySelector<HTMLParagraphElement>('#text-container')!;
+
+    textElement.style.fontSize = DEFAULT_FONT_SIZE;
+
+    fontResizer({
+      parentElement,
+      textElement
+    })
+
+  }
+
+  static backgroundColorChange = ({isLinear, colorList, angle}: IStore) => {
     let inlineStyle = `
     ${isLinear ? 'linear' : 'radial'}-gradient(${isLinear ? `${angle}deg` : `circle`},
     `;
@@ -38,6 +41,11 @@ class PrevGradient extends CoreView {
     const prevGradient = document.querySelector<HTMLDivElement>('#prev-gradient')!;
     prevGradient.style.background = inlineStyle;
     console.log(prevGradient.style.background);
+  }
+
+  static colorChange = (color: string) => {
+    const textContainer = document.querySelector<HTMLParagraphElement>('#text-container')!;
+    textContainer.style.color = color;
   }
 }
 

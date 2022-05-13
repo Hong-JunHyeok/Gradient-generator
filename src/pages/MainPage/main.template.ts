@@ -1,3 +1,5 @@
+import Handlebars from 'handlebars';
+
 const template = /* html */ `
     <main>
         <header class="w-full shadow font-bold fixed top-0 left-0">
@@ -36,9 +38,4 @@ const template = /* html */ `
     </main>
 `;
 
-const {
-  allowInsecurePrototypeAccess,
-} = require("@handlebars/allow-prototype-access");
-const insecureHandlebars = allowInsecurePrototypeAccess(window.Handlebars);
-
-export default insecureHandlebars.compile(template);
+export default Handlebars.compile(template);

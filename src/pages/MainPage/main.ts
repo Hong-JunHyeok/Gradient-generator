@@ -11,6 +11,8 @@ import { title } from "@src/data/site-meta.json";
 import { AnyObject } from "@src/types/common";
 import { IStore } from "@src/store";
 import { getStoreData } from '@src/utils/localSaver'
+import { DEFAULT_FONT_SIZE } from "@src/constants";
+import { fontResizer } from "@src/utils";
 
 type FieldType = {
   element: AnyObject,
@@ -92,13 +94,23 @@ export default class MainPage {
   public render = () => {
     this._container.innerHTML = this._template;
     this._fields.forEach((field) => {
+      console.log(this._data);
       field.element.render(field.template(this._data));
-
+      
       if (field.element.attachEventHandler) {
         field.element.attachEventHandler();
       }
     });
 
-    PrevGradient.colorChange(this._data);
+    const parentElement = document.querySelector<HTMLDivElement>('#prev-gradient')!;
+    const textElement = document.querySelector<HTMLParagraphElement>('#text-container')!;
+
+    textElement.style.fontSize = DEFAULT_FONT_SIZE;
+
+    fontResizer({
+      parentElement,
+      textElement
+    })
+    PrevGradient.backgroundColorChange(this._data);
   };
 }

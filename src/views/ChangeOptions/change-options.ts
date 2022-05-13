@@ -32,7 +32,7 @@ class ChangeOptions extends CoreView {
       angleInner.innerHTML = `Angle : ${this._data.angle}`;
     }
 
-    PrevGradient.colorChange(this._data);
+    PrevGradient.backgroundColorChange(this._data);
     saveStoreData(this._data);
   };
 
@@ -61,7 +61,7 @@ class ChangeOptions extends CoreView {
     }
 
     
-    PrevGradient.colorChange(this._data);
+    PrevGradient.backgroundColorChange(this._data);
     this.render(template(this._data), this.attachEventHandler);
   };
 
@@ -77,7 +77,7 @@ class ChangeOptions extends CoreView {
       this._data.angle += 1;
     }
 
-    PrevGradient.colorChange(this._data);
+    PrevGradient.backgroundColorChange(this._data);
     this.render(template(this._data));
     this.attachEventHandler();
   };
